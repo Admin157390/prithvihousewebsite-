@@ -1,26 +1,25 @@
-/* Basic reset */
+/* Basic Reset */
 * {
-  margin: 0; padding: 0; box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 body, html {
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  animation: backgroundShift 15s ease-in-out infinite alternate;
+  background: linear-gradient(270deg, #ff9a76, #66d9ef, #ffd480, #4cc0b0);
+  background-size: 800% 800%;
+  animation: gradientShift 20s ease infinite;
 }
 
-/* Animated warm/cool background */
-@keyframes backgroundShift {
-  0% {
-    background: linear-gradient(135deg, #ff9a76, #66d9ef);
-  }
-  50% {
-    background: linear-gradient(135deg, #ffd480, #4cc0b0);
-  }
-  100% {
-    background: linear-gradient(135deg, #ff9a76, #66d9ef);
-  }
+/* Background Animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
+/* Header Navigation */
 header {
   position: fixed;
   top: 0;
@@ -28,43 +27,47 @@ header {
   background: rgba(0, 128, 102, 0.9);
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  padding: 1rem 0;
+  gap: 1.5rem;
+  padding: 0.75rem 0;
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
   z-index: 100;
 }
-
 header a {
+  background: #00695c;
   color: #e0f7f4;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.1rem;
-  cursor: pointer;
-  padding-bottom: 4px;
-  transition: border-bottom 0.3s ease;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-header a:hover,
+header a:hover {
+  background: #004d40;
+  transform: translateY(-2px);
+}
 header a.active {
-  border-bottom: 3px solid #e0f7f4;
+  background: #00332d;
+  border: 2px solid #e0f7f4;
 }
 
+/* Main Content */
 main {
   max-width: 800px;
   margin: 100px auto 40px;
-  background: rgba(255 255 255 / 0.85);
+  background: rgba(255, 255, 255, 0.85);
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 8px 15px rgb(0 0 0 / 0.1);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   min-height: 300px;
 }
-
 section {
   display: none;
 }
 section.active {
   display: block;
 }
-
 h1 {
   color: #007f66;
   margin-bottom: 1rem;
@@ -75,7 +78,7 @@ p {
   line-height: 1.5;
 }
 
-/* Welcome overlay styles */
+/* Welcome Overlay */
 #welcomeOverlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -91,28 +94,36 @@ p {
   transition: opacity 1s ease;
   user-select: none;
 }
-
 #welcomeOverlay.fade-out {
   opacity: 0;
   pointer-events: none;
 }
-
-/* Animate the welcome text (fade in & slight zoom) */
-@keyframes welcomeTextAnim {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 #welcomeOverlay span {
   animation: welcomeTextAnim 2.5s ease forwards;
+}
+@keyframes welcomeTextAnim {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Form Input */
+input[type="email"], textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+button[type="submit"] {
+  background: #007f66;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+button[type="submit"]:hover {
+  background: #005d4f;
 }
