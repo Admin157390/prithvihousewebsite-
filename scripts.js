@@ -20,3 +20,17 @@ document.querySelectorAll("header a").forEach((link) => {
     }
   });
 });
+
+// Book PDF click handler
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("#books .options-list li").forEach((item) => {
+    item.addEventListener("click", () => {
+      const pdfUrl = item.getAttribute("data-pdf");
+      if (pdfUrl) {
+        window.open(pdfUrl, "_blank");
+      } else {
+        alert("No PDF link found for this subject.");
+      }
+    });
+  });
+});
