@@ -4,9 +4,15 @@ const starContainer = document.getElementById("stars");
 for (let i = 0; i < 100; i++) {
   const star = document.createElement("div");
   star.className = "star";
+  star.style.position = "fixed";
   star.style.top = Math.random() * 100 + "%";
   star.style.left = Math.random() * 100 + "%";
-  star.style.animationDuration = 1 + Math.random() * 2 + "s";
+  star.style.width = "2px";
+  star.style.height = "2px";
+  star.style.background = "#fff700";
+  star.style.borderRadius = "50%";
+  star.style.opacity = Math.random();
+  star.style.animation = `twinkle ${1 + Math.random() * 2}s infinite alternate`;
   starContainer.appendChild(star);
 }
 
@@ -17,8 +23,12 @@ document.querySelectorAll("header a").forEach((link) => {
     const targetId = link.getAttribute("data-section");
 
     // Remove active class from all links and sections
-    document.querySelectorAll("header a").forEach((a) => a.classList.remove("active"));
-    document.querySelectorAll("main section").forEach((section) => section.classList.remove("active"));
+    document
+      .querySelectorAll("header a")
+      .forEach((a) => a.classList.remove("active"));
+    document
+      .querySelectorAll("main section")
+      .forEach((section) => section.classList.remove("active"));
 
     // Add active class to clicked link and target section
     link.classList.add("active");
@@ -29,13 +39,12 @@ document.querySelectorAll("header a").forEach((link) => {
   });
 });
 
-// Add Vitthal Vitthal floating marquee text (already styled via CSS)
-const vitthalMarquee = document.createElement("div");
-vitthalMarquee.className = "vitthal-marquee";
-
-const marqueeText = document.createElement("span");
-marqueeText.className = "marquee-text";
-marqueeText.textContent = "विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल";
-
-vitthalMarquee.appendChild(marqueeText);
-document.body.appendChild(vitthalMarquee);
+// Star twinkle animation keyframes added dynamically
+const style = document.createElement("style");
+style.textContent = `
+@keyframes twinkle {
+  0% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+`;
+document.head.appendChild(style);
