@@ -24,3 +24,13 @@ document.querySelectorAll(".options-list li").forEach((item) => {
     }
   });
 });
+// Book PDF click handler
+document.querySelectorAll(".options-list li").forEach((item) => {
+  item.addEventListener("click", () => {
+    const pdfUrl = item.getAttribute("data-pdf");
+    if (pdfUrl) {
+      window.open(pdfUrl, "_blank");
+    }
+  });
+});
+

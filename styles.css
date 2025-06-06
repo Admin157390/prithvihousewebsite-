@@ -36,3 +36,41 @@
     padding: 8px 16px;
   }
 }
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) {
+  header {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  header a {
+    font-size: 1rem;
+    padding: 0.3rem 0;
+  }
+
+  main {
+    margin: 80px 10px 30px;
+    padding: 1rem;
+  }
+
+  .vitthal-marquee .marquee-text {
+    font-size: 4rem;
+  }
+
+  #customerCare a {
+    font-size: 16px;
+    padding: 10px 14px;
+  }
+
+  form input,
+  form textarea {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+}
