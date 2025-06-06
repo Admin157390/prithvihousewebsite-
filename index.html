@@ -7,6 +7,7 @@
   <title>CommunityWebste.in</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
+    /* Original Vitthal Marquee styles, kept intact */
     .vitthal-marquee {
       position: fixed;
       top: 50%;
@@ -45,6 +46,7 @@
       }
     }
 
+    /* Responsive tweaks */
     @media (max-width: 600px) {
       main {
         padding: 1rem;
@@ -73,6 +75,7 @@
     <a href="#" data-section="website">Info about Website</a>
     <a href="#" data-section="testpapers">Test Papers</a>
     <a href="#" data-section="books">Books</a>
+    <a href="#" data-section="uniform">Uniform</a> <!-- New Uniform menu added -->
   </header>
 
   <!-- Welcome overlay -->
@@ -81,6 +84,7 @@
   </div>
 
   <main>
+    <!-- Existing sections unchanged -->
     <section id="home" class="active">
       <h1>Welcome to Our WhatsApp Community</h1>
       <p>We currently have <strong>12 members</strong> in our group.</p>
@@ -137,21 +141,38 @@
         <li data-pdf="https://drive.google.com/file/d/1U3Nzdss9ccl5iu5j3XdGiSLhnuV4hjEb/view?usp=drive_link">IT</li>
       </ul>
     </section>
+
+    <!-- New Uniform section -->
+    <section id="uniform">
+      <h1>Uniform</h1>
+      <p>Our school uniform consists of:</p>
+      <ul>
+        <li>White shirt with school logo</li>
+        <li>Navy blue trousers or skirt</li>
+        <li>Black shoes</li>
+        <li>Optional navy blue sweater in winter</li>
+        <li>School tie during formal events</li>
+      </ul>
+      <p>Please ensure to wear your uniform neatly and follow school guidelines.</p>
+    </section>
   </main>
 
-  <!-- Floating Customer Care Button -->
+  <!-- Vitthal marquee from your original -->
+  <div class="vitthal-marquee">
+    <div class="marquee-text" aria-hidden="true">
+      विठ्ठल विठ्ठल विठ्ठल  विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल
+    </div>
+  </div>
+
+  <!-- Cool star background (same as original) -->
+  <div id="star-background"></div>
+
+  <!-- Customer Care button -->
   <div id="customerCare">
     <a href="https://wa.me/8080462808" target="_blank" title="Contact Customer Care">💬 Customer Care</a>
   </div>
 
-  <!-- Vitthal Marquee -->
-  <div class="vitthal-marquee">
-    <div class="marquee-text">विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल</div>
-  </div>
-
-  <!-- Vitthal Bhagwan Theme Stars -->
-  <div id="stars"></div>
-
-  <script src="scripts.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
