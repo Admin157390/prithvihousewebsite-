@@ -6,10 +6,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CommunityWebste.in</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .vitthal-marquee {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      overflow: visible;
+      pointer-events: none;
+      z-index: 10;
+      height: 8rem;
+      user-select: none;
+    }
+
+    .vitthal-marquee .marquee-text {
+      display: inline-block;
+      white-space: nowrap;
+      font-size: 4rem;
+      font-weight: 900;
+      color: #fff700;
+      opacity: 0.6;
+      text-shadow: 0 0 5px #fff700, 0 0 10px #fff700, 0 0 15px #ffea00,
+        0 0 20px #ffd700, 0 0 25px #ffcc00, 0 0 30px #ffbb00, 0 0 40px #ffaa00,
+        0 0 50px #ff9900;
+      animation: floatVitthal 20s linear infinite;
+      will-change: transform;
+      position: relative;
+      left: 0;
+    }
+
+    @keyframes floatVitthal {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 1rem;
+        margin: 80px 10px 40px;
+      }
+      .vitthal-marquee .marquee-text {
+        font-size: 2.5rem;
+      }
+      header a {
+        font-size: 0.9rem;
+        padding: 6px;
+      }
+      .options-list li {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
   <header>
     <a href="#" class="active" data-section="home">Home</a>
     <a href="#" data-section="feedback">Feedback</a>
@@ -88,15 +144,14 @@
     <a href="https://wa.me/8080462808" target="_blank" title="Contact Customer Care">💬 Customer Care</a>
   </div>
 
+  <!-- Vitthal Marquee -->
+  <div class="vitthal-marquee">
+    <div class="marquee-text">विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल</div>
+  </div>
+
   <!-- Vitthal Bhagwan Theme Stars -->
   <div id="stars"></div>
 
-  <!-- Vitthal marquee added here -->
-  <div class="vitthal-marquee">
-    <span class="marquee-text">विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल</span>
-  </div>
-
   <script src="scripts.js"></script>
 </body>
-
 </html>
