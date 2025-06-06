@@ -155,7 +155,7 @@ p {
 }
 .options-list li {
   background: #e0f7f4;
-  margin-bottom: 15px;  /* More space between options */
+  margin-bottom: 10px;
   padding: 12px 20px;
   border-radius: 7px;
   font-weight: 700;
@@ -241,77 +241,5 @@ p {
   .options-list li {
     font-size: 1rem;
     padding: 10px 16px;
-  }
-}
-
-/* === Vitthal flowing background text === */
-#vitthal-flow {
-  position: fixed;
-  top: 50%;
-  left: 100%;
-  transform: translateY(-50%);
-  white-space: nowrap;
-  display: flex;
-  gap: 3.5rem;
-  font-size: 3.2rem;
-  font-weight: 900;
-  user-select: none;
-  pointer-events: none;
-  z-index: 1; /* behind main content */
-  animation: flowLeft 22s linear infinite;
-  text-rendering: optimizeLegibility;
-  color: #ffd700;
-  text-shadow:
-    0 0 8px #ffd700,
-    0 0 20px #ffd700,
-    0 0 35px #fffacd,
-    0 0 40px #fffacd,
-    0 0 60px #fffacd;
-  will-change: transform, opacity, text-shadow;
-}
-
-#vitthal-flow span {
-  display: inline-block;
-  animation: sineMove 3.8s ease-in-out infinite;
-}
-
-#vitthal-flow span:nth-child(1) { animation-delay: 0s; }
-#vitthal-flow span:nth-child(2) { animation-delay: 0.45s; }
-#vitthal-flow span:nth-child(3) { animation-delay: 0.9s; }
-#vitthal-flow span:nth-child(4) { animation-delay: 1.35s; }
-#vitthal-flow span:nth-child(5) { animation-delay: 1.8s; }
-#vitthal-flow span:nth-child(6) { animation-delay: 2.25s; }
-#vitthal-flow span:nth-child(7) { animation-delay: 2.7s; }
-#vitthal-flow span:nth-child(8) { animation-delay: 3.15s; }
-
-@keyframes flowLeft {
-  0% {
-    left: 100%;
-  }
-  100% {
-    left: -400%;
-  }
-}
-
-@keyframes sineMove {
-  0%, 100% {
-    transform: translateY(0);
-    opacity: 1;
-    text-shadow:
-      0 0 8px #ffd700,
-      0 0 20px #ffd700,
-      0 0 35px #fffacd,
-      0 0 40px #fffacd,
-      0 0 60px #fffacd;
-  }
-  50% {
-    transform: translateY(-18px);
-    opacity: 0.95;
-    text-shadow:
-      0 0 15px #fff8a6,
-      0 0 30px #fff8a6,
-      0 0 50px #fffacd,
-      0 0 60px #fffacd,
-      0 0 80px #fffacd;
   }
 }
