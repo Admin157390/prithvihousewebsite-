@@ -6,10 +6,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CommunityWebste.in</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Original Vitthal Marquee styles, kept intact */
+    .vitthal-marquee {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      overflow: visible;
+      pointer-events: none;
+      z-index: 10;
+      height: 8rem;
+      user-select: none;
+    }
+
+    .vitthal-marquee .marquee-text {
+      display: inline-block;
+      white-space: nowrap;
+      font-size: 4rem;
+      font-weight: 900;
+      color: #fff700;
+      opacity: 0.6;
+      text-shadow: 0 0 5px #fff700, 0 0 10px #fff700, 0 0 15px #ffea00,
+        0 0 20px #ffd700, 0 0 25px #ffcc00, 0 0 30px #ffbb00, 0 0 40px #ffaa00,
+        0 0 50px #ff9900;
+      animation: floatVitthal 20s linear infinite;
+      will-change: transform;
+      position: relative;
+      left: 0;
+    }
+
+    @keyframes floatVitthal {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      main {
+        padding: 1rem;
+        margin: 80px 10px 40px;
+      }
+      .vitthal-marquee .marquee-text {
+        font-size: 2.5rem;
+      }
+      header a {
+        font-size: 0.9rem;
+        padding: 6px;
+      }
+      .options-list li {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
   <header>
     <a href="#" class="active" data-section="home">Home</a>
     <a href="#" data-section="feedback">Feedback</a>
@@ -17,7 +75,7 @@
     <a href="#" data-section="website">Info about Website</a>
     <a href="#" data-section="testpapers">Test Papers</a>
     <a href="#" data-section="books">Books</a>
-    <a href="#" data-section="uniform">Uniform</a>
+    <a href="#" data-section="uniform">Uniform</a> <!-- New Uniform menu added -->
   </header>
 
   <!-- Welcome overlay -->
@@ -26,6 +84,7 @@
   </div>
 
   <main>
+    <!-- Existing sections unchanged -->
     <section id="home" class="active">
       <h1>Welcome to Our WhatsApp Community</h1>
       <p>We currently have <strong>12 members</strong> in our group.</p>
@@ -57,50 +116,63 @@
     <section id="website">
       <h1>Info about Website</h1>
       <p>This website serves as the central hub for our WhatsApp community, designed to keep everyone connected, informed, and engaged. Our goal is to provide a friendly and easy-to-navigate platform where members can find important updates, learn about community activities, and share their thoughts through feedback.</p>
-      <p>By creating this website, we aim to enhance communication beyond WhatsApp, offering a space that complements the instant messaging experience with detailed information and resources. Whether you’re a new member curious about who we are, or a longtime participant wanting to stay updated, this website is tailored to meet your needs. The website updates every month including the books section; we provide the notes of all subjects, but the new notes will be available after each update.</p>
+      <p>By creating this website, we aim to enhance communication beyond WhatsApp, offering a space that complements the instant messaging experience with detailed information and resources. Whether you’re a new member curious about who we are, or a longtime participant wanting to stay updated, this website is tailored to meet your needs.The website ubdate ever month inculdeinding the books section we provide the notes of all subject but the new notes will get after ubdate the website .</p>
     </section>
 
     <section id="testpapers">
       <h1>Test Papers (Optional)</h1>
-      <p><em>Blank for now — will provide you as soon as possible. If you have any problems, click on customer care.</em></p>
+      <p><em>Blank for now — will provide you as soon as posible do you have any problem than click on customer care .</em></p>
     </section>
 
     <section id="books">
       <h1>Books (Optional)</h1>
       <ul class="options-list">
-        <li><a href="https://drive.google.com/file/d/1SgoowI1bGn1Oe3UEikVITrIzSqbjVVdA/view?usp=drive_link" target="_blank">Hindi</a></li>
-        <li><a href="https://example.com/marathi.pdf" target="_blank">Marathi</a></li>
-        <li><a href="https://drive.google.com/file/d/1TYmGx2JkHSDcWX5I71jYgwe7dhKcvwmV/view?usp=drive_link" target="_blank">Biology</a></li>
-        <li><a href="https://example.com/chemistry.pdf" target="_blank">Chemistry</a></li>
-        <li><a href="https://drive.google.com/file/d/1TgQXQe3Mn0AiUl11qxCYX3LL-5NKwJRX/view?usp=drive_link" target="_blank">Physics</a></li>
-        <li><a href="https://example.com/math.pdf" target="_blank">Mathematics</a></li>
-        <li><a href="https://example.com/history.pdf" target="_blank">History</a></li>
-        <li><a href="https://drive.google.com/file/d/1TqnuP1pjhtpW0hplGjT-N4ZH4ebxsTyb/view?usp=drive_link" target="_blank">English</a></li>
-        <li><a href="https://drive.google.com/file/d/1TllLRwr5W7IID_3ynH5cTsAaKvvRKksJ/view?usp=drive_link" target="_blank">Economics</a></li>
-        <li><a href="https://example.com/political-science.pdf" target="_blank">Political Science</a></li>
-        <li><a href="https://example.com/geography.pdf" target="_blank">Geography</a></li>
-        <li><a href="https://drive.google.com/file/d/1U3Nzdss9ccl5iu5j3XdGiSLhnuV4hjEb/view?usp=drive_link" target="_blank">IT</a></li>
+        <li data-pdf="https://drive.google.com/file/d/1SgoowI1bGn1Oe3UEikVITrIzSqbjVVdA/view?usp=drive_link">Hindi</li>
+        <li data-pdf="https://example.com/marathi.pdf">Marathi</li>
+        <li data-pdf="https://drive.google.com/file/d/1TYmGx2JkHSDcWX5I71jYgwe7dhKcvwmV/view?usp=drive_link">Biology</li>
+        <li data-pdf="https://example.com/chemistry.pdf">Chemistry</li>
+        <li data-pdf="https://drive.google.com/file/d/1TgQXQe3Mn0AiUl11qxCYX3LL-5NKwJRX/view?usp=drive_link">Physics</li>
+        <li data-pdf="https://example.com/math.pdf">Mathematics</li>
+        <li data-pdf="https://example.com/history.pdf">History</li>
+        <li data-pdf="https://drive.google.com/file/d/1TqnuP1pjhtpW0hplGjT-N4ZH4ebxsTyb/view?usp=drive_link">English</li>
+        <li data-pdf="https://drive.google.com/file/d/1TllLRwr5W7IID_3ynH5cTsAaKvvRKksJ/view?usp=drive_link">Economics</li>
+        <li data-pdf="https://example.com/political-science.pdf">Political Science</li>
+        <li data-pdf="https://example.com/geography.pdf">Geography</li>
+        <li data-pdf="https://drive.google.com/file/d/1U3Nzdss9ccl5iu5j3XdGiSLhnuV4hjEb/view?usp=drive_link">IT</li>
       </ul>
     </section>
 
+    <!-- New Uniform section -->
     <section id="uniform">
       <h1>Uniform</h1>
-      <p>Our school uniform includes standard attire for boys and girls. Please refer to the following list for details:</p>
+      <p>Our school uniform consists of:</p>
       <ul>
-        <li><strong>Boys:</strong> White shirt, navy blue pants, black shoes, and school tie.</li>
-        <li><strong>Girls:</strong> White blouse, navy blue skirt or salwar suit, black shoes, and school tie.</li>
+        <li>White shirt with school logo</li>
+        <li>Navy blue trousers or skirt</li>
+        <li>Black shoes</li>
+        <li>Optional navy blue sweater in winter</li>
+        <li>School tie during formal events</li>
       </ul>
-      <p>Winter wear includes a navy blue sweater or blazer with the school emblem.</p>
-      <p>If you have any questions about the uniform, feel free to contact us at: <strong>+91 8087807876</strong></p>
+      <p>Please ensure to wear your uniform neatly and follow school guidelines.</p>
     </section>
   </main>
 
-  <!-- Floating Customer Care Button -->
-  <div id="customerCare">
-    <a href="https://wa.me/+918080462808" target="_blank" title="Contact Customer Care">💬 Customer Care</a>
+  <!-- Vitthal marquee from your original -->
+  <div class="vitthal-marquee">
+    <div class="marquee-text" aria-hidden="true">
+      विठ्ठल विठ्ठल विठ्ठल  विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल विठ्ठल
+    </div>
   </div>
 
-  <script src="scripts.js"></script>
+  <!-- Cool star background (same as original) -->
+  <div id="star-background"></div>
+
+  <!-- Customer Care button -->
+  <div id="customerCare">
+    <a href="https://wa.me/8080462808" target="_blank" title="Contact Customer Care">💬 Customer Care</a>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
