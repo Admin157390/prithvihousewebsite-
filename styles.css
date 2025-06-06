@@ -7,7 +7,7 @@
 body,
 html {
   height: 100%;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   animation: backgroundShift 15s ease-in-out infinite alternate;
   overflow-x: hidden;
 }
@@ -61,7 +61,7 @@ main {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   min-height: 300px;
   position: relative;
-  z-index: 101;
+  z-index: 101; /* above marquee */
 }
 
 section {
@@ -168,6 +168,50 @@ p {
   background-color: #a0d6c9;
 }
 
+/* Floating विठ्ठल विठ्ठल text */
+.vitthal-marquee {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 50;
+  height: 8rem;
+  user-select: none;
+}
+.vitthal-marquee .marquee-text {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 8rem;
+  font-weight: 900;
+  color: #fff700;
+  opacity: 1;
+  text-shadow:
+    0 0 10px #fff700,
+    0 0 20px #fff700,
+    0 0 30px #ffea00,
+    0 0 40px #ffd700,
+    0 0 50px #ffcc00,
+    0 0 60px #ffbb00,
+    0 0 80px #ffaa00,
+    0 0 100px #ff9900;
+  animation: floatVitthal 40s linear infinite;
+  will-change: transform;
+  position: relative;
+  left: 0;
+}
+
+/* Animate marquee float from right to left */
+@keyframes floatVitthal {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 /* Auto-hide welcome overlay after 1.5s + 1s fade-out */
 #welcomeOverlay {
   animation: hideOverlay 2.5s forwards;
@@ -199,47 +243,5 @@ p {
   to {
     opacity: 0;
     visibility: hidden;
-  }
-}
-
-/* === Responsive Styles for Phone and Tablet === */
-@media (max-width: 768px) {
-  header {
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 0.75rem;
-    justify-content: space-around;
-  }
-
-  header a {
-    font-size: 1rem;
-  }
-
-  main {
-    margin: 120px 10px 40px;
-    padding: 1.5rem;
-  }
-
-  #welcomeOverlay {
-    font-size: 1.8rem;
-    padding: 1rem;
-    text-align: center;
-  }
-
-  #customerCare a {
-    padding: 10px 14px;
-    font-size: 16px;
-  }
-
-  input,
-  textarea,
-  button {
-    max-width: 100%;
-    font-size: 1rem;
-  }
-
-  .options-list li {
-    font-size: 1rem;
-    padding: 10px 16px;
   }
 }
