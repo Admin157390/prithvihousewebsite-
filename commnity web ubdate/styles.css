@@ -1,0 +1,245 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body,
+html {
+  height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  animation: backgroundShift 15s ease-in-out infinite alternate;
+  overflow-x: hidden;
+}
+
+/* Animated warm/cool background */
+@keyframes backgroundShift {
+  0% {
+    background: linear-gradient(135deg, #ff9a76, #66d9ef);
+  }
+  50% {
+    background: linear-gradient(135deg, #ffd480, #4cc0b0);
+  }
+  100% {
+    background: linear-gradient(135deg, #ff9a76, #66d9ef);
+  }
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 128, 102, 0.9);
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+header a {
+  color: #e0f7f4;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding-bottom: 4px;
+  transition: border-bottom 0.3s ease;
+}
+header a:hover,
+header a.active {
+  border-bottom: 3px solid #e0f7f4;
+}
+
+main {
+  max-width: 800px;
+  margin: 100px auto 40px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  min-height: 300px;
+  position: relative;
+  z-index: 101;
+}
+
+section {
+  display: none;
+}
+section.active {
+  display: block;
+}
+
+h1 {
+  color: #007f66;
+  margin-bottom: 1rem;
+}
+p {
+  color: #004d40;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Welcome overlay styles */
+#welcomeOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 128, 102, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #e0f7f4;
+  font-size: 2.5rem;
+  font-weight: bold;
+  z-index: 200;
+  opacity: 1;
+  transition: opacity 1s ease;
+  user-select: none;
+}
+
+#welcomeOverlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes welcomeTextAnim {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#welcomeOverlay span {
+  animation: welcomeTextAnim 2.5s ease forwards;
+}
+
+/* === Floating Customer Care Button === */
+#customerCare {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 150;
+}
+#customerCare a {
+  display: inline-block;
+  background-color: #007f66;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 50px;
+  font-size: 18px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+#customerCare a:hover {
+  background-color: #004d40;
+}
+
+/* === Added for Upside Books list === */
+.options-list {
+  list-style: none;
+  margin-top: 1rem;
+  padding-left: 0;
+}
+.options-list li {
+  background: #e0f7f4;
+  margin-bottom: 10px;
+  padding: 12px 20px;
+  border-radius: 7px;
+  font-weight: 700;
+  color: #007f66;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.25s ease;
+}
+.options-list li:hover {
+  background-color: #a0d6c9;
+}
+
+/* Auto-hide welcome overlay after 1.5s + 1s fade-out */
+#welcomeOverlay {
+  animation: hideOverlay 2.5s forwards;
+}
+
+/* Keyframes to fade out and hide */
+@keyframes hideOverlay {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  60% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+/* Auto-hide welcome overlay using delay + fade-out */
+#welcomeOverlay {
+  animation: fadeOutOverlay 1s ease forwards;
+  animation-delay: 1.5s;
+}
+
+/* Fade out the overlay */
+@keyframes fadeOutOverlay {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* === Responsive Styles for Phone and Tablet === */
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.75rem;
+    justify-content: space-around;
+  }
+
+  header a {
+    font-size: 1rem;
+  }
+
+  main {
+    margin: 120px 10px 40px;
+    padding: 1.5rem;
+  }
+
+  #welcomeOverlay {
+    font-size: 1.8rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  #customerCare a {
+    padding: 10px 14px;
+    font-size: 16px;
+  }
+
+  input,
+  textarea,
+  button {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+
+  .options-list li {
+    font-size: 1rem;
+    padding: 10px 16px;
+  }
+}
