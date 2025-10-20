@@ -58,7 +58,6 @@ nav {
 nav.show {
   left: 0;
 }
-
 nav ul {
   list-style: none;
   display: flex;
@@ -66,7 +65,6 @@ nav ul {
   gap: 18px;
   padding-left: 25px;
 }
-
 nav a {
   text-decoration: none;
   color: #fff;
@@ -103,12 +101,8 @@ h1, h2 {
   margin-bottom: 14px;
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
 }
-h1 {
-  font-size: 2.3rem;
-}
-h2 {
-  font-size: 1.8rem;
-}
+h1 { font-size: 2.3rem; }
+h2 { font-size: 1.8rem; }
 
 /* === HOME PAGE === */
 .home-container {
@@ -116,7 +110,6 @@ h2 {
   margin-top: 40px;
   animation: fadeIn 1s ease-in-out;
 }
-
 .home-container h1 {
   font-size: 2.5rem;
   color: #fff;
@@ -126,12 +119,10 @@ h2 {
   -webkit-text-fill-color: transparent;
   animation: glowText 2s infinite alternate;
 }
-
 @keyframes glowText {
   from { text-shadow: 0 0 10px rgba(255,255,255,0.3); }
   to { text-shadow: 0 0 25px rgba(255,255,255,0.8); }
 }
-
 .tagline {
   font-size: 1.3rem;
   font-weight: 600;
@@ -139,7 +130,6 @@ h2 {
   margin-bottom: 20px;
   letter-spacing: 1px;
 }
-
 .desc {
   font-size: 1rem;
   color: #f5f5f5;
@@ -147,7 +137,6 @@ h2 {
   margin: 0 auto 25px;
   line-height: 1.6;
 }
-
 .home-card {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
@@ -164,7 +153,6 @@ h2 {
   transform: translateY(-4px);
   box-shadow: 0 6px 25px rgba(255,255,255,0.2);
 }
-
 .join-btn {
   display: inline-block;
   margin-top: 15px;
@@ -181,7 +169,6 @@ h2 {
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(255,255,255,0.7);
 }
-
 .home-footer p {
   margin-top: 30px;
   font-style: italic;
@@ -225,7 +212,6 @@ form {
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   backdrop-filter: blur(10px);
 }
-
 input, textarea {
   padding: 12px;
   border: none;
@@ -240,7 +226,6 @@ input:focus, textarea:focus {
   transform: scale(1.02);
   outline: none;
 }
-
 button {
   background: linear-gradient(135deg, #ff4081, #7c4dff);
   color: white;
@@ -275,4 +260,4 @@ button:hover {
   .desc {
     font-size: 0.95rem;
   }
-  }
+}
