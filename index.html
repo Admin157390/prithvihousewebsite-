@@ -1,106 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CommunityWebste.in</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prithvi House | Empros International School</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
+  <!-- Welcome Music -->
+  <audio autoplay>
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9e1b98c8c0.mp3" type="audio/mp3">
+  </audio>
 
-  <header>
-    <a href="#" class="active" data-section="home">Home</a>
-    <a href="#" data-section="feedback">Feedback</a>
-    <a href="#" data-section="community">Info about Community</a>
-    <a href="#" data-section="website">Info about Website</a>
-    <a href="#" data-section="testpapers">Test Papers</a>
-    <a href="#" data-section="books">Books</a>
-    <a href="#" data-section="uniform">Uniform</a>
-  </header>
+  <!-- Hamburger Menu -->
+  <div class="hamburger">&#9776;</div>
 
-  <!-- Welcome overlay -->
-  <div id="welcomeOverlay">
-    <span>Welcome to Our WhatsApp Community!</span>
-  </div>
+  <!-- Side Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#" data-section="home">🏠 Home</a></li>
+      <li><a href="#" data-section="students">🎯 Students Leading</a></li>
+      <li><a href="#" data-section="events">🏅 Upcoming Events/Sports</a></li>
+      <li><a href="#" data-section="info">ℹ️ About Prithvi House</a></li>
+      <li><a href="#" data-section="feedback">💬 Feedbacks</a></li>
+      <li><a href="#" data-section="media">📸 Photos / Media</a></li>
+      <li><a href="#" data-section="mail">✉️ Leave Mail</a></li>
+    </ul>
+  </nav>
 
+  <!-- MAIN CONTENT -->
   <main>
-    <section id="home" class="active">
-      <h1>Welcome to Our WhatsApp Community</h1>
-      <p>We currently have <strong>12 members</strong> in our group.</p>
-      <p><em>Special active members: Malhar, Rohan, Ranveer.</em></p>
-      <p>This community is active on WhatsApp — big thanks to WhatsApp for making this possible!</p>
+    <!-- HOME PAGE -->
+    <section id="home" class="section active">
+      <div class="home-container">
+        <h1>Welcome to Prithvi House</h1>
+        <p class="tagline">"The Green Guardians of Empros International School"</p>
+        <p class="desc">
+          Prithvi House represents growth, balance, and harmony with nature. We believe in teamwork,
+          discipline, and innovation — shining bright in academics, sports, and culture alike.
+        </p>
+
+        <div class="home-card">
+          <h2>About This Website</h2>
+          <p>
+            This is the official platform for Prithvi House members at Empros International School,
+            Talegaon Dabhade. Here you can explore our leading students, upcoming inter-house events,
+            house updates, and even send us your valuable feedback.
+          </p>
+        </div>
+
+        <div class="home-card">
+          <h2>Join Our Community</h2>
+          <a href="https://chat.whatsapp.com/KDaPoZXibz4CE5ouyIKdVR?mode=wwc" 
+             target="_blank" class="join-btn">Join WhatsApp Community</a>
+        </div>
+
+        <div class="home-footer">
+          <p>“Together we grow, together we shine – We are Prithvi House.” 🌍</p>
+        </div>
+      </div>
     </section>
 
-    <section id="feedback">
-      <h1>Feedback</h1>
-      <form action="mailto:memberofgroup790@gmail.com" method="post" enctype="text/plain">
-        <label for="email">Your Email:</label><br />
-        <input type="email" id="email" name="userEmail" required placeholder="you@example.com" style="width:100%;padding:8px;margin:8px 0;" /><br />
-        <label for="message">Your Feedback:</label><br />
-        <textarea id="message" name="message" rows="5" required placeholder="Write your feedback here..." style="width:100%;padding:8px;margin:8px 0;"></textarea><br />
-        <button type="submit" style="background:#007f66;color:#fff;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;">Send Feedback</button>
+    <!-- STUDENTS LEADING -->
+    <section id="students" class="section">
+      <h2>Top Performing Students</h2>
+      <canvas id="studentChart"></canvas>
+    </section>
+
+    <!-- UPCOMING EVENTS -->
+    <section id="events" class="section">
+      <h2>Upcoming Events & Sports</h2>
+      <ul class="event-list">
+        <li>🏏 Inter-House Cricket Match – 2nd November 2025</li>
+        <li>🏃‍♀️ Annual Sports Meet – 12th December 2025</li>
+        <li>⚽ Inter-House Football Finals – Date to be Announced</li>
+        <li>🏆 Tug of War Championship – Coming Soon!</li>
+      </ul>
+    </section>
+
+    <!-- INFO ABOUT PRITHVI HOUSE -->
+    <section id="info" class="section">
+      <h2>About Prithvi House</h2>
+      <div class="info-card">
+        <strong>Prefect:</strong> Princika<br>
+        <strong>Vice Prefect:</strong> Kartik<br>
+        <strong>House Teacher:</strong> Prajita Nair Ma’am
+      </div>
+      <p>
+        🌍 Prithvi House symbolizes **Earth**, the mother of life and balance. 
+        It represents strength, patience, and steady growth. We believe in nurturing talents, 
+        respecting all beings, and striving for excellence while staying humble.
+      </p>
+      <p>
+        Our motto: <em>“Rooted in values, rising towards excellence.”</em>
+      </p>
+    </section>
+
+    <!-- FEEDBACK -->
+    <section id="feedback" class="section">
+      <h2>Feedbacks from Prithvi House Students</h2>
+      <ul class="feedback-list">
+        <li>Vedant – “I love being part of a team that believes in growth.”</li>
+        <li>Kunal – “Prithvi House gives me motivation and strength.”</li>
+        <li>Chinmay – “I enjoy every event and competition we have!”</li>
+        <li>Sejal – “The unity and energy in Prithvi House are unmatched.”</li>
+        <li>Aditi – “We are not just a house, we are a family.”</li>
+        <li>Tvisha – “Proud to represent the Earth and our team!”</li>
+        <li>Vishal – “Prithvi House helps me stay balanced and focused.”</li>
+        <li>Mit – “Every event is a new learning experience.”</li>
+        <li>Gauri – “We believe in peace, hard work, and creativity.”</li>
+        <li>Abhinav – “It’s always fun being part of Prithvi House.”</li>
+        <li>Jivani – “Our team spirit makes us stronger.”</li>
+        <li>Yuvraj – “Go Prithvi House! Always forward.”</li>
+        <li>Shlok – “We rise by lifting others.”</li>
+        <li>Sarth – “I feel proud to represent our house.”</li>
+        <li>Arnav – “Every challenge makes us better.”</li>
+        <li>Aditya – “Our motto keeps me inspired every day.”</li>
+        <li>Swarali – “Prithvi House means teamwork and passion.”</li>
+        <li>Jagrav – “We always give our best together.”</li>
+        <li>Ishita – “Nature, balance, and positivity define us.”</li>
+        <li>Vaidehi – “Our strength is our unity.”</li>
+        <li>Kinjal – “Proud to be part of the green spirit!”</li>
+        <li>Aarohi – “We grow like trees, strong and humble.”</li>
+        <li>Ansh – “Prithvi House rocks every event!”</li>
+      </ul>
+    </section>
+
+    <!-- PHOTOS / MEDIA -->
+    <section id="media" class="section">
+      <h2>Photos & Media</h2>
+      <div class="home-card">
+        <p>🎥 Explore our moments, achievements, and videos on our official YouTube Channel.</p>
+        <a href="https://www.youtube.com/@EISPrithvihouse" target="_blank" class="join-btn">
+          Visit Our YouTube Channel
+        </a>
+      </div>
+      <div class="media-gallery">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=UU" 
+                title="Prithvi House Channel" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- LEAVE MAIL -->
+    <section id="mail" class="section">
+      <h2>Send a Message to Prithvi House Team</h2>
+      <form onsubmit="sendMail(event)">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <input type="email" id="email" placeholder="Your Email" required />
+        <textarea id="message" rows="4" placeholder="Your Message..." required></textarea>
+        <button type="submit">Send Mail</button>
       </form>
-      <p style="margin-top:10px;">Feedback will be sent to: <strong>memberofgroup790@gmail.com</strong></p>
-    </section>
-
-    <section id="community">
-      <h1>Info about Community</h1>
-      <p>Our WhatsApp group is a place for people to connect, share ideas, and support each other. We have a close-knit group of 12 members, including some very active and special members like Malhar, Rohan, and Ranveer.</p>
-      <p>Members regularly share study notes and resources to help everyone stay on track with their schoolwork.</p>
-      <p>We encourage helping one another with doubts and questions, fostering a collaborative learning environment.</p>
-      <p>Important school information, announcements, and exam tips are frequently shared to keep everyone well-informed.</p>
-      <p>Our community continually works on improving itself by welcoming new ideas, organizing group discussions, and encouraging active participation from all members.</p>
-    </section>
-
-    <section id="website">
-      <h1>Info about Website</h1>
-      <p>This website serves as the central hub for our WhatsApp community, designed to keep everyone connected, informed, and engaged. Our goal is to provide a friendly and easy-to-navigate platform where members can find important updates, learn about community activities, and share their thoughts through feedback.</p>
-      <p>By creating this website, we aim to enhance communication beyond WhatsApp, offering a space that complements the instant messaging experience with detailed information and resources. Whether you’re a new member curious about who we are, or a longtime participant wanting to stay updated, this website is tailored to meet your needs. The website updates every month including the books section; we provide the notes of all subjects, but the new notes will be available after each update.</p>
-    </section>
-
-    <section id="testpapers">
-      <h1>Test Papers (Optional)</h1>
-      <p><em>Blank for now — will provide you as soon as possible. If you have any problems, click on customer care.</em></p>
-    </section>
-
-    <section id="books">
-      <h1>Books (Optional)</h1>
-      <ul class="options-list">
-        <li><a href="https://drive.google.com/file/d/1SgoowI1bGn1Oe3UEikVITrIzSqbjVVdA/view?usp=drive_link" target="_blank">Hindi</a></li>
-        <li><a href="https://example.com/marathi.pdf" target="_blank">Marathi</a></li>
-        <li><a href="https://drive.google.com/file/d/1TYmGx2JkHSDcWX5I71jYgwe7dhKcvwmV/view?usp=drive_link" target="_blank">Biology</a></li>
-        <li><a href="https://example.com/chemistry.pdf" target="_blank">Chemistry</a></li>
-        <li><a href="https://drive.google.com/file/d/1TgQXQe3Mn0AiUl11qxCYX3LL-5NKwJRX/view?usp=drive_link" target="_blank">Physics</a></li>
-        <li><a href="https://example.com/math.pdf" target="_blank">Mathematics</a></li>
-        <li><a href="https://example.com/history.pdf" target="_blank">History</a></li>
-        <li><a href="https://drive.google.com/file/d/1TqnuP1pjhtpW0hplGjT-N4ZH4ebxsTyb/view?usp=drive_link" target="_blank">English</a></li>
-        <li><a href="https://drive.google.com/file/d/1TllLRwr5W7IID_3ynH5cTsAaKvvRKksJ/view?usp=drive_link" target="_blank">Economics</a></li>
-        <li><a href="https://example.com/political-science.pdf" target="_blank">Political Science</a></li>
-        <li><a href="https://example.com/geography.pdf" target="_blank">Geography</a></li>
-        <li><a href="https://drive.google.com/file/d/1U3Nzdss9ccl5iu5j3XdGiSLhnuV4hjEb/view?usp=drive_link" target="_blank">IT</a></li>
-      </ul>
-    </section>
-
-    <section id="uniform">
-      <h1>Uniform</h1>
-      <p>Our school uniform includes standard attire for boys and girls. Please refer to the following list for details:</p>
-      <ul>
-        <li><strong>Boys:</strong> White shirt, navy blue pants, black shoes, and school tie.</li>
-        <li><strong>Girls:</strong> White blouse, navy blue skirt or salwar suit, black shoes, and school tie.</li>
-      </ul>
-      <p>Winter wear includes a navy blue sweater or blazer with the school emblem.</p>
-      <p>If you have any questions about the uniform, feel free to contact us at: <strong>+91 8087807876</strong></p>
     </section>
   </main>
 
-  <!-- Floating Customer Care Button -->
-  <div id="customerCare">
-    <a href="https://wa.me/+918080462808" target="_blank" title="Contact Customer Care">💬 Customer Care</a>
-  </div>
-
-  <script src="scripts.js"></script>
+  <script src="script.js"></script>
 </body>
-
-</html>
+  </html>
