@@ -1,166 +1,225 @@
-<!DOCTYPE html>    
-<html lang="en">    
-<head>    
-  <meta charset="UTF-8" />    
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
-  <title>Prithvi House | Empros International School</title>    
-  <link rel="stylesheet" href="style.css" />    
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    emailjs.init("EzWnTJC9VB_yxVTL0");
-  </script>
-</head>    
-    
-<body>    
-  <!-- Welcome Music -->    
-  <audio autoplay>    
-    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9e1b98c8c0.mp3" type="audio/mp3">    
-  </audio>    
-    
-  <!-- Hamburger Menu -->    
-  <div class="hamburger">&#9776;</div>    
-    
-  <!-- Side Navigation -->    
-  <nav>    
-    <ul>    
-      <li><a href="#" data-section="home">🏠 Home</a></li>    
-      <li><a href="#" data-section="students">🎯 Students Leading</a></li>    
-      <li><a href="#" data-section="events">🏅 Upcoming Events/Sports</a></li>    
-      <li><a href="#" data-section="info">ℹ️ About Prithvi House</a></li>    
-      <li><a href="#" data-section="feedback">💬 Feedbacks</a></li>    
-      <li><a href="#" data-section="media">📸 Photos / Media</a></li>    
-      <li><a href="#" data-section="mail">✉️ Leave Mail</a></li>    
-    </ul>    
-  </nav>    
-    
-  <!-- MAIN CONTENT -->    
-  <main>    
-    <!-- HOME PAGE -->    
-    <section id="home" class="section active">    
-      <div class="home-container">    
-        <h1>Welcome to Prithvi House</h1>    
-        <p class="tagline">"The Green Guardians of Empros International School"</p>    
-        <p class="desc">    
-          Prithvi House represents growth, balance, and harmony with nature. We believe in teamwork,    
-          discipline, and innovation — shining bright in academics, sports, and culture alike.    
-        </p>    
-    
-        <div class="home-card">    
-          <h2>About This Website</h2>    
-          <p>    
-            This is the official platform for Prithvi House members at Empros International School,    
-            Talegaon Dabhade. Here you can explore our leading students, upcoming inter-house events,    
-            house updates, and even send us your valuable feedback.    
-          </p>    
-        </div>    
-    
-        <div class="home-card">    
-          <h2>Join Our Community</h2>    
-          <a href="https://chat.whatsapp.com/KDaPoZXibz4CE5ouyIKdVR?mode=wwc"     
-             target="_blank" class="join-btn">Join WhatsApp Community</a>    
-        </div>    
-    
-        <div class="home-footer">    
-          <p>“Together we grow, together we shine – We are Prithvi House.” 🌍</p>    
-        </div>    
-      </div>    
-    </section>    
-    
-    <!-- STUDENTS LEADING -->    
-    <section id="students" class="section">    
-      <h2>Top Performing Students</h2>    
-      <canvas id="studentChart"></canvas>    
-    </section>    
-    
-    <!-- UPCOMING EVENTS -->    
-    <section id="events" class="section">    
-      <h2>Upcoming Events & Sports</h2>    
-      <ul class="event-list">    
-        <li>🏏 Inter-House Cricket Match – update soon </li>    
-        <li>🏃‍♀️ Annual Sports Meet – update soon </li>    
-        <li>⚽ Inter-House Football Finals – Date to be Announced</li>    
-        <li>🏆 Tug of War Championship – Coming Soon!</li>    
-      </ul>    
-    </section>    
-    
-    <!-- INFO ABOUT PRITHVI HOUSE -->    
-    <section id="info" class="section">    
-      <h2>About Prithvi House</h2>    
-      <div class="info-card">    
-        <strong>Prefect:</strong> Princika<br>    
-        <strong>Vice Prefect:</strong> Kartik<br>    
-        <strong>House Teacher:</strong> Prajita Nair Ma’am    
-      </div>    
-      <p>    
-        🌍 Prithvi House symbolizes **Earth**, the mother of life and balance.     
-        It represents strength, patience, and steady growth. We believe in nurturing talents,     
-        respecting all beings, and striving for excellence while staying humble.    
-      </p>    
-      <p>    
-        Our motto: <em>“Rooted in values, rising towards excellence.”</em>    
-      </p>    
-    </section>    
-    
-    <!-- FEEDBACK -->    
-    <section id="feedback" class="section">    
-      <h2>Feedbacks from Prithvi House Students</h2>    
-      <ul class="feedback-list">    
-        <li>Vedant – “I love being part of a team that believes in growth.”</li>    
-        <li>Kunal – “Prithvi House gives me motivation and strength.”</li>    
-        <li>Chinmay – “I enjoy every event and competition we have!”</li>    
-        <li>Sejal – “The unity and energy in Prithvi House are unmatched.”</li>    
-        <li>Aditi – “We are not just a house, we are a family.”</li>    
-        <li>Tvisha – “Proud to represent the Earth and our team!”</li>    
-        <li>Vishal – “Prithvi House helps me stay balanced and focused.”</li>    
-        <li>Mit – “Every event is a new learning experience.”</li>    
-        <li>Gauri – “We believe in peace, hard work, and creativity.”</li>    
-        <li>Abhinav – “It’s always fun being part of Prithvi House.”</li>    
-        <li>Jivani – “Our team spirit makes us stronger.”</li>    
-        <li>Yuvraj – “Go Prithvi House! Always forward.”</li>    
-        <li>Shlok – “We rise by lifting others.”</li>    
-        <li>Sarth – “I feel proud to represent our house.”</li>    
-        <li>Arnav – “Every challenge makes us better.”</li>    
-        <li>Aditya – “Our motto keeps me inspired every day.”</li>    
-        <li>Swarali – “Prithvi House means teamwork and passion.”</li>    
-        <li>Jagrav – “We always give our best together.”</li>    
-        <li>Ishita – “Nature, balance, and positivity define us.”</li>    
-        <li>Vaidehi – “Our strength is our unity.”</li>    
-        <li>Kinjal – “Proud to be part of the green spirit!”</li>    
-        <li>Aarohi – “We grow like trees, strong and humble.”</li>    
-        <li>Ansh – “Prithvi House rocks every event!”</li>    
-      </ul>    
-    </section>    
-    
-    <!-- PHOTOS / MEDIA -->    
-    <section id="media" class="section">    
-      <h2>Photos & Media</h2>    
-      <div class="home-card">    
-        <p>🎥 Explore our moments, achievements, and videos on our official YouTube Channel.</p>    
-        <a href="https://www.youtube.com/@EISPrithvihouse" target="_blank" class="join-btn">    
-          Visit Our YouTube Channel    
-        </a>    
-      </div>    
-      <div class="media-gallery">    
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=UU"     
-                title="Prithvi House Channel" frameborder="0" allowfullscreen></iframe>    
-      </div>    
-    </section>    
-    
-    <!-- LEAVE MAIL -->    
-    <section id="mail" class="section">    
-      <h2>Send a Message to Prithvi House Team</h2>    
-      <form id="contact-form">    
-        <input type="text" id="name" placeholder="Your Name" required />    
-        <input type="email" id="email" placeholder="Your Email" required />    
-        <textarea id="message" rows="4" placeholder="Your Message..." required></textarea>    
-        <button type="submit">Send Mail</button>    
-      </form>    
-      <p id="mail-status"></p>
-    </section>    
-  </main>    
-    
-  <script src="script.js"></script>    
-</body>    
-</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prithvi House | Empros International School</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("EzWnTJC9VB_yxVTL0");
+</script>
+<style>
+/* === GLOBAL RESET === */
+* {margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif; scroll-behavior:smooth;}
+body {color:#fff; overflow-x:hidden; min-height:100vh; background:linear-gradient(270deg,#6a11cb,#2575fc,#00c6ff,#0072ff,#ff512f,#dd2476); background-size:1200% 1200%; animation:bgAnimation 15s ease infinite;}
+@keyframes bgAnimation{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 
+/* === HAMBURGER MENU === */
+.hamburger{position:fixed;top:20px;left:20px;font-size:28px;cursor:pointer;color:#fff;z-index:1001;transition:transform 0.3s ease,color 0.3s;text-shadow:0 0 10px rgba(255,255,255,0.5);}
+.hamburger:hover{transform:scale(1.2); color:#ffeb3b;}
+
+/* === SIDE NAV MENU === */
+nav{position:fixed; left:-250px; top:0; height:100%; width:220px; background:rgba(0,0,0,0.75); backdrop-filter:blur(12px); padding-top:80px; transition:left 0.4s ease-in-out; box-shadow:4px 0 10px rgba(0,0,0,0.5); z-index:1000; border-right:2px solid rgba(255,255,255,0.1);}
+nav.show{left:0;}
+nav ul{list-style:none; display:flex; flex-direction:column; gap:18px; padding-left:25px;}
+nav a{text-decoration:none;color:#fff;font-size:1.05rem;font-weight:500;transition:all 0.3s; letter-spacing:0.5px;}
+nav a:hover{color:#00e5ff; transform:translateX(6px); text-shadow:0 0 8px #00e5ff;}
+
+/* === MAIN LAYOUT === */
+main{padding:40px 20px; max-width:1000px; margin:90px auto;}
+
+/* === SECTIONS === */
+.section{display:none; animation:fadeIn 0.8s ease-in-out;}
+.section.active{display:block;}
+
+/* === HEADINGS === */
+h1,h2{color:#fff; margin-bottom:14px; text-shadow:0 0 12px rgba(255,255,255,0.5);}
+h1{font-size:2.3rem;} h2{font-size:1.8rem;}
+
+/* === HOME PAGE === */
+.home-container{text-align:center; margin-top:40px; animation:fadeIn 1s ease-in-out;}
+.home-container h1{ font-size:2.5rem; background:linear-gradient(90deg,#ffeb3b,#00e5ff,#ff4081); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glowText 2s infinite alternate;}
+@keyframes glowText{from{text-shadow:0 0 10px rgba(255,255,255,0.3);}to{text-shadow:0 0 25px rgba(255,255,255,0.8);}}
+.tagline{font-size:1.3rem; font-weight:600; color:#f1f8e9; margin-bottom:20px; letter-spacing:1px;}
+.desc{font-size:1rem; color:#f5f5f5; max-width:750px; margin:0 auto 25px; line-height:1.6;}
+.home-card{background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,0.25); border-radius:14px; padding:25px; margin:20px auto; width:85%; max-width:550px; box-shadow:0 4px 20px rgba(0,0,0,0.3); transition: transform 0.3s, box-shadow 0.3s;}
+.home-card:hover{transform:translateY(-4px); box-shadow:0 6px 25px rgba(255,255,255,0.2);}
+.join-btn{display:inline-block; margin-top:15px; background:linear-gradient(135deg,#00e5ff,#7c4dff,#ff4081); color:white; text-decoration:none; padding:10px 20px; border-radius:30px; font-weight:600; box-shadow:0 0 10px rgba(255,255,255,0.4); transition:all 0.3s;}
+.join-btn:hover{transform:scale(1.05); box-shadow:0 0 20px rgba(255,255,255,0.7);}
+.home-footer p{margin-top:30px; font-style:italic; color:#ffebee;}
+
+/* === EVENT AND FEEDBACK LISTS === */
+.event-list li,.feedback-list li{padding:10px 12px; background: rgba(255,255,255,0.12); border-radius:8px; margin-bottom:10px; box-shadow:0 1px 4px rgba(0,0,0,0.3); transition: transform 0.2s, background 0.3s;}
+.event-list li:hover,.feedback-list li:hover{transform:scale(1.02); background: rgba(255,255,255,0.25);}
+
+/* === INFO CARD === */
+.info-card{background: rgba(255,255,255,0.15); padding:15px 20px; border-left:5px solid #ffeb3b; border-radius:10px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.3); color:#fff;}
+
+/* === FORM === */
+form{display:flex; flex-direction:column; gap:12px; max-width:400px; background: rgba(255,255,255,0.1); padding:25px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.3); backdrop-filter: blur(10px);}
+input,textarea{padding:12px; border:none; border-radius:10px; font-size:1rem; background: rgba(255,255,255,0.8); color:#000; transition:box-shadow 0.3s, transform 0.2s;}
+input:focus,textarea:focus{box-shadow:0 0 10px #00e5ff; transform:scale(1.02); outline:none;}
+button{background:linear-gradient(135deg,#ff4081,#7c4dff); color:white; border:none; border-radius:10px; padding:12px; font-weight:bold; cursor:pointer; transition:background 0.3s, transform 0.2s; box-shadow:0 0 10px rgba(255,255,255,0.4);}
+button:hover{transform:scale(1.05); box-shadow:0 0 15px rgba(255,255,255,0.7);}
+
+@keyframes fadeIn{from{opacity:0; transform:translateY(20px);}to{opacity:1; transform:translateY(0);}}
+@media(max-width:768px){main{margin-top:60px; padding:20px;} .home-card{width:95%;} .desc{font-size:0.95rem;}}
+</style>
+</head>
+<body>
+<audio autoplay>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9e1b98c8c0.mp3" type="audio/mp3">
+</audio>
+
+<div class="hamburger">&#9776;</div>
+<nav>
+<ul>
+<li><a href="#" data-section="home">🏠 Home</a></li>
+<li><a href="#" data-section="students">🎯 Students Leading</a></li>
+<li><a href="#" data-section="events">🏅 Upcoming Events/Sports</a></li>
+<li><a href="#" data-section="info">ℹ️ About Prithvi House</a></li>
+<li><a href="#" data-section="feedback">💬 Feedbacks</a></li>
+<li><a href="#" data-section="media">📸 Photos / Media</a></li>
+<li><a href="#" data-section="mail">✉️ Leave Mail</a></li>
+</ul>
+</nav>
+
+<main>
+<!-- HOME -->
+<section id="home" class="section active">
+<div class="home-container">
+<h1>Welcome to Prithvi House</h1>
+<p class="tagline">"The Green Guardians of Empros International School"</p>
+<p class="desc">Prithvi House represents growth, balance, and harmony with nature. We believe in teamwork, discipline, and innovation — shining bright in academics, sports, and culture alike.</p>
+<div class="home-card">
+<h2>About This Website</h2>
+<p>This is the official platform for Prithvi House members at Empros International School, Talegaon Dabhade. Here you can explore our leading students, upcoming inter-house events, house updates, and even send us your valuable feedback.</p>
+</div>
+<div class="home-card">
+<h2>Join Our Community</h2>
+<a href="https://chat.whatsapp.com/KDaPoZXibz4CE5ouyIKdVR?mode=wwc" target="_blank" class="join-btn">Join WhatsApp Community</a>
+</div>
+<div class="home-footer"><p>“Together we grow, together we shine – We are Prithvi House.” 🌍</p></div>
+</div>
+</section>
+
+<!-- STUDENTS -->
+<section id="students" class="section">
+<h2>Top Performing Students</h2>
+<canvas id="studentChart"></canvas>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="section">
+<h2>Upcoming Events & Sports</h2>
+<ul class="event-list">
+<li>🏏 Inter-House Cricket Matches update soon</li>
+<li>🏃‍♀️ Annual Sports Meet – update soon</li>
+<li>⚽ Inter-House Football Finals – Date to be Announced</li>
+<li>🏆 Tug of War Championship – Coming Soon!</li>
+</ul>
+</section>
+
+<!-- INFO -->
+<section id="info" class="section">
+<h2>About Prithvi House</h2>
+<div class="info-card">
+<strong>Prefect:</strong> Princika<br>
+<strong>Vice Prefect:</strong> Kartik<br>
+<strong>House Teacher:</strong> Prajita Nair Ma’am
+</div>
+<p>🌍 Prithvi House symbolizes <strong>Earth</strong>, the mother of life and balance. It represents strength, patience, and steady growth. We believe in nurturing talents, respecting all beings, and striving for excellence while staying humble.</p>
+<p>Our motto: <em>“Rooted in values, rising towards excellence.”</em></p>
+</section>
+
+<!-- FEEDBACK -->
+<section id="feedback" class="section">
+<h2>Feedbacks from Prithvi House Students</h2>
+<ul class="feedback-list">
+<li>Vedant – “I love being part of a team that believes in growth.”</li>
+<li>Kunal – “Prithvi House gives me motivation and strength.”</li>
+<li>Chinmay – “I enjoy every event and competition we have!”</li>
+<li>Sejal – “The unity and energy in Prithvi House are unmatched.”</li>
+<li>Aditi – “We are not just a house, we are a family.”</li>
+<li>Tvisha – “Proud to represent the Earth and our team!”</li>
+<li>Vishal – “Prithvi House helps me stay balanced and focused.”</li>
+<li>Mit – “Every event is a new learning experience.”</li>
+<li>Gauri – “We believe in peace, hard work, and creativity.”</li>
+<li>Abhinav – “It’s always fun being part of Prithvi House.”</li>
+<li>Jivani – “Our team spirit makes us stronger.”</li>
+<li>Yuvraj – “Go Prithvi House! Always forward.”</li>
+<li>Shlok – “We rise by lifting others.”</li>
+<li>Sarth – “I feel proud to represent our house.”</li>
+<li>Arnav – “Every challenge makes us better.”</li>
+<li>Aditya – “Our motto keeps me inspired every day.”</li>
+<li>Swarali – “Prithvi House means teamwork and passion.”</li>
+<li>Jagrav – “We always give our best together.”</li>
+<li>Ishita – “Nature, balance, and positivity define us.”</li>
+<li>Vaidehi – “Our strength is our unity.”</li>
+<li>Kinjal – “Proud to be part of the green spirit!”</li>
+<li>Aarohi – “We grow like trees, strong and humble.”</li>
+<li>Ansh – “Prithvi House rocks every event!”</li>
+</ul>
+</section>
+
+<!-- MEDIA -->
+<section id="media" class="section">
+<h2>Photos & Media</h2>
+<div class="home-card">
+<p>🎥 Explore our moments, achievements, and videos on our official YouTube Channel.</p>
+<a href="https://www.youtube.com/@EISPrithvihouse" target="_blank" class="join-btn">Visit Our YouTube Channel</a>
+</div>
+<div class="media-gallery">
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=UU" title="Prithvi House Channel" frameborder="0" allowfullscreen></iframe>
+</div>
+</section>
+
+<!-- MAIL -->
+<section id="mail" class="section">
+<h2>Send a Message to Prithvi House Team</h2>
+<form id="contact-form">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="email" id="email" placeholder="Your Email" required>
+<textarea id="message" rows="4" placeholder="Your Message..." required></textarea>
+<button type="submit">Send Mail</button>
+</form>
+<p id="mail-status"></p>
+</section>
+</main>
+
+<script>
+// MENU TOGGLE
+const hamburger=document.querySelector(".hamburger");
+const nav=document.querySelector("nav");
+const links=document.querySelectorAll("nav a");
+const sections=document.querySelectorAll(".section");
+hamburger.addEventListener("click",()=>{nav.classList.toggle("show");});
+links.forEach(link=>{link.addEventListener("click",e=>{
+e.preventDefault();
+const id=link.getAttribute("data-section");
+sections.forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+nav.classList.remove("show");
+});});
+
+// STUDENT CHART
+const ctx=document.getElementById("studentChart").getContext("2d");
+new Chart(ctx,{type:"bar",data:{labels:["Vedant","Kunal","Chinmay","Sejal","Aditi","Tvisha","Vishal","Mit","Gauri","Abhinav","Jivani","Yuvraj","Shlok","Sarth","Arnav","Aditya","Swarali","Jagrav","Ishita","Vaidehi","Kinjal","Aarohi","Ansh"],datasets:[{label:"Performance Score",data:[90,88,86,92,85,91,84,80,83,89,87,82,90,88,85,91,89,86,90,87,84,83,88],backgroundColor:["#ff4081","#7c4dff","#00e5ff","#ffeb3b","#ff5722","#4caf50","#03a9f4","#e91e63","#009688","#8bc34a","#ffc107","#9c27b0","#00bcd4","#f44336","#2196f3","#673ab7","#ff9800","#cddc39","#4db6ac","#3f51b5","#0097a7","#b388ff","#26c6da"]}]} , options:{responsive:true, scales:{y:{beginAtZero:true,max:100}}}});
+
+// SEND MAIL
+document.getElementById("contact-form").addEventListener("submit",function(e){
+e.preventDefault();
+const name=document.getElementById("name").value;
+const email=document.getElementById("email").value;
+const message=document.getElementById("message").value;
+emailjs.send("service_2lklg8e","template_6cmr2gw",{from_name:name,from_email:email,message:message}).then(()=>{
+document.getElementById("mail-status").innerText="✅ Mail Sent Successfully!";
+document.getElementById("contact-form").reset();
+},(error)=>{
+document.getElementById("mail-status").innerText="❌ Error sending mail!";
+});
+});
+</script>
+</body>
+</html>
