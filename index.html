@@ -1,354 +1,343 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Prithvi House | Empros International School</title>
-
-<!-- unchanged libraries -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script> emailjs.init("EzWnTJC9VB_yxVTL0"); </script>
-
-<style>
-/* === ORIGINAL STYLES (kept) === */
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Prithvi House | Empros International School</title><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script><script>
+            
+  emailjs.init("EzWnTJC9VB_yxVTL0");
+            
+</script><style>
+            
+/* === GLOBAL RESET === */
+            
 * {margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif; scroll-behavior:smooth;}
+            
 body {color:#fff; overflow-x:hidden; min-height:100vh; background:linear-gradient(270deg,#6a11cb,#2575fc,#00c6ff,#0072ff,#ff512f,#dd2476); background-size:1200% 1200%; animation:bgAnimation 15s ease infinite;}
+            
 @keyframes bgAnimation{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+            
 
+            
 /* === HAMBURGER MENU === */
+            
 .hamburger{position:fixed;top:20px;left:20px;font-size:28px;cursor:pointer;color:#fff;z-index:1001;transition:transform 0.3s ease,color 0.3s;text-shadow:0 0 10px rgba(255,255,255,0.5);}
+            
 .hamburger:hover{transform:scale(1.2); color:#ffeb3b;}
+            
 
+            
 /* === SIDE NAV MENU === */
+            
 nav{position:fixed; left:-250px; top:0; height:100%; width:220px; background:rgba(0,0,0,0.75); backdrop-filter:blur(12px); padding-top:80px; transition:left 0.4s ease-in-out; box-shadow:4px 0 10px rgba(0,0,0,0.5); z-index:1000; border-right:2px solid rgba(255,255,255,0.1);}
+            
 nav.show{left:0;}
+            
 nav ul{list-style:none; display:flex; flex-direction:column; gap:18px; padding-left:25px;}
+            
 nav a{text-decoration:none;color:#fff;font-size:1.05rem;font-weight:500;transition:all 0.3s; letter-spacing:0.5px;}
+            
 nav a:hover{color:#00e5ff; transform:translateX(6px); text-shadow:0 0 8px #00e5ff;}
+            
 
+            
 /* === MAIN LAYOUT === */
+            
 main{padding:40px 20px; max-width:1000px; margin:90px auto;}
+            
 
+            
 /* === SECTIONS === */
+            
 .section{display:none; animation:fadeIn 0.8s ease-in-out;}
+            
 .section.active{display:block;}
+            
 
+            
 /* === HEADINGS === */
+            
 h1,h2{color:#fff; margin-bottom:14px; text-shadow:0 0 12px rgba(255,255,255,0.5);}
+            
 h1{font-size:2.3rem;} h2{font-size:1.8rem;}
+            
 
+            
 /* === HOME PAGE === */
+            
 .home-container{text-align:center; margin-top:40px; animation:fadeIn 1s ease-in-out;}
+            
 .home-container h1{ font-size:2.5rem; background:linear-gradient(90deg,#ffeb3b,#00e5ff,#ff4081); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glowText 2s infinite alternate;}
+            
 @keyframes glowText{from{text-shadow:0 0 10px rgba(255,255,255,0.3);}to{text-shadow:0 0 25px rgba(255,255,255,0.8);}}
+            
 .tagline{font-size:1.3rem; font-weight:600; color:#f1f8e9; margin-bottom:20px; letter-spacing:1px;}
+            
 .desc{font-size:1rem; color:#f5f5f5; max-width:750px; margin:0 auto 25px; line-height:1.6;}
+            
 .home-card{background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,0.25); border-radius:14px; padding:25px; margin:20px auto; width:85%; max-width:550px; box-shadow:0 4px 20px rgba(0,0,0,0.3); transition: transform 0.3s, box-shadow 0.3s;}
+            
 .home-card:hover{transform:translateY(-4px); box-shadow:0 6px 25px rgba(255,255,255,0.2);}
+            
 .join-btn{display:inline-block; margin-top:15px; background:linear-gradient(135deg,#00e5ff,#7c4dff,#ff4081); color:white; text-decoration:none; padding:10px 20px; border-radius:30px; font-weight:600; box-shadow:0 0 10px rgba(255,255,255,0.4); transition:all 0.3s;}
+            
 .join-btn:hover{transform:scale(1.05); box-shadow:0 0 20px rgba(255,255,255,0.7);}
+            
 .home-footer p{margin-top:30px; font-style:italic; color:#ffebee;}
+            
 
+            
 /* === EVENT AND FEEDBACK LISTS === */
+            
 .event-list li,.feedback-list li{padding:10px 12px; background: rgba(255,255,255,0.12); border-radius:8px; margin-bottom:10px; box-shadow:0 1px 4px rgba(0,0,0,0.3); transition: transform 0.2s, background 0.3s;}
+            
 .event-list li:hover,.feedback-list li:hover{transform:scale(1.02); background: rgba(255,255,255,0.25);}
+            
 
+            
 /* === INFO CARD === */
+            
 .info-card{background: rgba(255,255,255,0.15); padding:15px 20px; border-left:5px solid #ffeb3b; border-radius:10px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.3); color:#fff;}
+            
 
+            
 /* === FORM & MAIL UI === */
+            
 form{display:flex; flex-direction:column; gap:12px; max-width:400px; background: rgba(255,255,255,0.1); padding:25px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.3); backdrop-filter: blur(10px);}
+            
 input,textarea{padding:12px; border:none; border-radius:10px; font-size:1rem; background: rgba(255,255,255,0.9); color:#000; transition:box-shadow 0.3s, transform 0.2s;}
+            
 input:focus,textarea:focus{box-shadow:0 0 10px #00e5ff; transform:scale(1.02); outline:none;}
+            
 button{background:linear-gradient(135deg,#ff4081,#7c4dff); color:white; border:none; border-radius:10px; padding:12px; font-weight:bold; cursor:pointer; transition:background 0.3s, transform 0.2s; box-shadow:0 0 10px rgba(255,255,255,0.4);}
+            
 button:hover{transform:scale(1.05); box-shadow:0 0 15px rgba(255,255,255,0.7);}
+            
 
+            
 /* === HIGHLIGHTED OPTIONS (NEW MAIL UI) === */
+            
 .mail-choice, .method-choice {display:flex; justify-content:center; gap:20px; margin:25px 0; flex-wrap:wrap;}
+            
 .mail-btn, .method-btn {font-size:1.05rem; font-weight:700; padding:14px 30px; border:none; border-radius:999px; cursor:pointer; color:#fff; transition:transform 0.25s, box-shadow 0.25s; box-shadow:0 6px 30px rgba(0,0,0,0.25); text-shadow:0 1px 8px rgba(0,0,0,0.2);}
+            
 .mail-btn:hover, .method-btn:hover{transform:translateY(-4px) scale(1.03); box-shadow:0 10px 40px rgba(0,0,0,0.35);}
+            
 .report{background:linear-gradient(90deg,#ff5252,#d32f2f); border:2px solid rgba(255,255,255,0.08);}
+            
 .feedback{background:linear-gradient(90deg,#00e676,#00c853); border:2px solid rgba(255,255,255,0.08);}
+            
 .whatsapp{background:linear-gradient(90deg,#25D366,#128C7E); border:2px solid rgba(255,255,255,0.08);}
+            
 .email{background:linear-gradient(90deg,#448aff,#2962ff); border:2px solid rgba(255,255,255,0.08);}
+            
+
+            
 #choice-title{font-weight:700; letter-spacing:0.3px; color:#fff; text-shadow:0 0 12px rgba(255,255,255,0.5); width:100%; text-align:center; margin-bottom:6px;}
+            
+
+            
 /* small screens */
+            
 @media(max-width:768px){main{margin-top:60px; padding:20px;} .home-card{width:95%;} .desc{font-size:0.95rem;} .mail-btn, .method-btn{padding:12px 20px; font-size:1rem;}}
+            
 @keyframes fadeIn{from{opacity:0; transform:translateY(20px);}to{opacity:1; transform:translateY(0);} }
+            
+</style></head><body><audio autoplay>  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9e1b98c8c0.mp3" type="audio/mp3"></audio><div class="hamburger">&#9776;</div><nav><ul><li><a href="#" data-section="home">🏠 Home</a></li><li><a href="#" data-section="students">🎯 Students Leading</a></li><li><a href="#" data-section="events">🏅 Upcoming Events/Sports</a></li><li><a href="#" data-section="info">ℹ️ About Prithvi House</a></li><li><a href="#" data-section="feedback">💬 Feedbacks</a></li><li><a href="#" data-section="media">📸 Photos / Media</a></li><li><a href="#" data-section="mail">✉️ report/feedback Mail</a></li></ul></nav><main><!-- HOME --><section id="home" class="section active"><div class="home-container"><h1>Welcome to Prithvi House</h1><p class="tagline">"The Green Guardians of Empros International School"</p><p class="desc">Prithvi House represents growth, balance, and harmony with nature. We believe in teamwork, discipline, and innovation — shining bright in academics, sports, and culture alike.</p><div class="home-card"><h2>About This Website</h2><p>This is the official platform for Prithvi House members at Empros International School, Talegaon Dabhade. Here you can explore our leading students, upcoming inter-house events, house updates, and even send us your valuable feedback.</p></div><div class="home-card"><h2>Join Our Community</h2><a href="https://chat.whatsapp.com/KDaPoZXibz4CE5ouyIKdVR?mode=wwc" target="_blank" class="join-btn">Join WhatsApp Community</a>
 
-/* === ADDITIONS (non-structural): student list dropdown & hover-star styles & back buttons === */
-/* Student list container (inserted inside your students section) */
-.student-list { margin-top:18px; display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px; }
-.student-item { background: rgba(255,255,255,0.06); padding:10px 12px; border-radius:10px; cursor:pointer; display:flex; flex-direction:column; gap:8px; transition: transform 0.12s, box-shadow 0.12s; position:relative; color:#fff; }
-.student-item:hover{ transform:translateY(-6px); box-shadow:0 10px 30px rgba(0,0,0,0.4); }
+</div><div class="home-footer"><p>“Together we grow, together we shine – We are Prithvi House.” 🌍</p></div></div></section><!-- STUDENTS --><section id="students" class="section"><h2>Top Performing Students</h2><canvas id="studentChart"></canvas>
 
-/* name row */
-.student-row { display:flex; align-items:center; justify-content:space-between; gap:8px; font-weight:700; color:#fff; }
+</section><!-- EVENTS --><section id="events" class="section"><h2>Upcoming Events & Sports</h2><ul class="event-list"><li>🏏 Inter-House Cricket Matches update soon</li><li>🏃‍♀️ Annual Sports Meet – update soon</li><li>⚽ Inter-House Football Finals – Date to be Announced</li><li>🏆 Tug of War Championship – Coming Soon!</li></ul></section><!-- INFO --><section id="info" class="section"><h2>About Prithvi House</h2><div class="info-card"><strong>Prefect:</strong> Princika<br>
 
-/* star appears on hover only (2b) */
-.student-star { opacity:0; transform:scale(0.95); transition:opacity .18s, transform .18s, text-shadow .18s; color:#ffd54a; margin-left:8px; }
-.student-item:hover .student-star { opacity:1; transform:scale(1.05); text-shadow:0 0 10px rgba(255,213,74,0.8); }
+<strong>Vice Prefect:</strong> Kartik<br>
 
-/* dropdown panel (1b) */
-.student-panel { max-height:0; overflow:hidden; transition: max-height .25s ease, opacity .25s ease; opacity:0; font-size:0.95rem; color:#f0f0f0; padding:0 4px; }
-.student-panel.open { opacity:1; padding-top:8px; }
+<strong>House Teacher:</strong> Prajita Nair Ma’am
 
-/* when open, allow reasonable height */
-.student-panel.open { max-height:160px; }
+</div><p>🌍 Prithvi House symbolizes <strong>Earth</strong>, the mother of life and balance. It represents strength, patience, and steady growth. We believe in nurturing talents, respecting all beings, and striving for excellence while staying humble.</p><p>Our motto: <em>“Rooted in values, rising towards excellence.”</em></p></section><!-- FEEDBACK --><section id="feedback" class="section"><h2>Feedbacks from Prithvi House Students</h2><ul class="feedback-list"><li>Vedant – “I love being part of a team that believes in growth.”</li><li>Kunal – “Prithvi House gives me motivation and strength.”</li><li>Chinmay – “I enjoy every event and competition we have!”</li><li>Sejal – “The unity and energy in Prithvi House are unmatched.”</li><li>Aditi – “We are not just a house, we are a family.”</li><li>Tvisha – “Proud to represent the Earth and our team!”</li><li>Vishal – “Prithvi House helps me stay balanced and focused.”</li><li>Mit – “Every event is a new learning experience.”</li><li>Gauri – “We believe in peace, hard work, and creativity.”</li><li>Abhinav – “It’s always fun being part of Prithvi House.”</li><li>Jivani – “Our team spirit makes us stronger.”</li><li>Yuvraj – “Go Prithvi House! Always forward.”</li><li>Shlok – “We rise by lifting others.”</li><li>Sarth – “I feel proud to represent our house.”</li><li>Arnav – “Every challenge makes us better.”li><li>Aditya – “Our motto keeps me inspired every day.”li><li>Swarali – “Prithvi House means teamwork and passion.”li><li>Jagrav – “We always give our best together.”li><li>Ishita – “Nature, balance, and positivity define us.”li><li>Vaidehi – “Our strength is our unity.”li><li>Kinjal – “Proud to be part of the green spirit!”li><li>Aarohi – “We grow like trees, strong and humble.”li><li>Ansh – “Prithvi House rocks every event!”li></ul></section><!-- MEDIA --><section id="media" class="section"><h2>Photos & Media</h2><div class="home-card"><p>🎥 Explore our moments, achievements, and videos on our official YouTube Channel.</p><a href="https://www.youtube.com/@EISPrithvihouse" target="_blank" class="join-btn">Visit Our YouTube Channel</a>
 
-/* small arrow indicator */
-.student-arrow { font-size:18px; opacity:0.9; }
+</div><div class="media-gallery"><iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=UU" title="Prithvi House Channel" frameborder="0" allowfullscreen></iframe></div></section><!-- MAIL (UPDATED: preserved rest, replaced old mail form with new UI) --><section id="mail" class="section"><h2>Send a Message to Prithvi House Team</h2><!-- STEP 1: Choose Report / Feedback --><div id="mail-options" class="mail-choice"><button class="mail-btn report"><span style="font-size:1.05rem">🚨</span> <span style="text-decoration:underline; text-transform:uppercase;">Report</span></button>
 
-/* mail-step back buttons (top-left inside method-options & contact-form) */
-.method-choice .back-btn, form .back-btn { position: absolute; top:8px; left:8px; background: rgba(0,0,0,0.25); color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer; font-weight:700; z-index:50; }
-.method-choice { position: relative; }
-form { position: relative; }
+<button class="mail-btn feedback"><span style="font-size:1.05rem">💚</span> <span style="text-decoration:underline; text-transform:uppercase;">Feedback</span></button>
 
-/* subtle panel shadow to match UI */
-.student-item { background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.06); }
+</div><!-- STEP 2: Choose WhatsApp / Email --><div id="method-options" class="method-choice" style="display:none;">  <div id="choice-title"> </div><button class="method-btn whatsapp"><span style="font-weight:800">💬</span> <span style="font-weight:700">Send on WhatsApp</span><br><small style="opacity:0.9">Direct to +91 8080462808</small></button>
 
-/* responsive */
-@media (max-width:520px){ .student-list { grid-template-columns: 1fr; } .student-item { padding:12px; } }
-</style>
-</head>
-<body>
+<button class="method-btn email"><span style="font-weight:800">✉️</span> <span style="font-weight:700">Send via Email</span><br><small style="opacity:0.9">Securely via EmailJS</small></button>
 
-<audio autoplay>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9e1b98c8c0.mp3" type="audio/mp3">
-</audio>
+</div><!-- STEP 3: Email FORM (appears only if Email chosen) --><form id="contact-form" style="display:none;">  <input type="text" id="name" placeholder="Your Name" required>  <input type="email" id="email" placeholder="Your Email" required>  <textarea id="message" rows="4" placeholder="Your Message..." required></textarea><button type="submit">Send Mail</button>
 
-<div class="hamburger">☰</div>
-
-<nav>
-  <ul>
-    <li><a href="#" data-section="home">🏠 Home</a></li>
-    <li><a href="#" data-section="students">🎯 Students Leading</a></li>
-    <li><a href="#" data-section="events">🏅 Upcoming Events/Sports</a></li>
-    <li><a href="#" data-section="info">ℹ️ About Prithvi House</a></li>
-    <li><a href="#" data-section="feedback">💬 Feedbacks</a></li>
-    <li><a href="#" data-section="media">📸 Photos / Media</a></li>
-    <li><a href="#" data-section="mail">✉️ report/feedback Mail</a></li>
-  </ul>
-</nav>
-
-<main>
-  <!-- HOME -->
-  <section id="home" class="section active">
-    <div class="home-container">
-      <h1>Welcome to Prithvi House</h1>
-      <p class="tagline">"The Green Guardians of Empros International School"</p>
-      <p class="desc">Prithvi House represents growth, balance, and harmony with nature. We believe in teamwork, discipline, and innovation — shining bright in academics, sports, and culture alike.</p>
-
-      <div class="home-card">
-        <h2>About This Website</h2>
-        <p>This is the official platform for Prithvi House members at Empros International School, Talegaon Dabhade. Here you can explore our leading students, upcoming inter-house events, house updates, and even send us your valuable feedback.</p>
-      </div>
-
-      <div class="home-card">
-        <h2>Join Our Community</h2>
-        <a href="https://chat.whatsapp.com/KDaPoZXibz4CE5ouyIKdVR?mode=wwc" target="_blank" class="join-btn">Join WhatsApp Community</a>
-      </div>
-
-      <div class="home-footer"><p>“Together we grow, together we shine – We are Prithvi House.” 🌍</p></div>
-    </div>
-  </section>
-
-  <!-- STUDENTS -->
-  <section id="students" class="section">
-    <h2>Top Performing Students</h2>
-    <canvas id="studentChart"></canvas>
-
-    <!-- ADDED: student list (keeps structure - inserted here only) -->
-    <div class="student-list" id="studentList">
-      <!-- JS will populate items here (all content/text preserved elsewhere) -->
-    </div>
-  </section>
-
-  <!-- EVENTS -->
-  <section id="events" class="section">
-    <h2>Upcoming Events & Sports</h2>
-    <ul class="event-list">
-      <li>🏏 Inter-House Cricket Matches update soon</li>
-      <li>🏃‍♀️ Annual Sports Meet – update soon</li>
-      <li>⚽ Inter-House Football Finals – Date to be Announced</li>
-      <li>🏆 Tug of War Championship – Coming Soon!</li>
-    </ul>
-  </section>
-
-  <!-- INFO -->
-  <section id="info" class="section">
-    <h2>About Prithvi House</h2>
-    <div class="info-card">
-      <strong>Prefect:</strong> Princika<br>
-      <strong>Vice Prefect:</strong> Kartik<br>
-      <strong>House Teacher:</strong> Prajita Nair Ma’am
-    </div>
-    <p>🌍 Prithvi House symbolizes <strong>Earth</strong>, the mother of life and balance. It represents strength, patience, and steady growth. We believe in nurturing talents, respecting all beings, and striving for excellence while staying humble.</p>
-    <p>Our motto: <em>“Rooted in values, rising towards excellence.”</em></p>
-  </section>
-
-  <!-- FEEDBACK -->
-  <section id="feedback" class="section">
-    <h2>Feedbacks from Prithvi House Students</h2>
-    <ul class="feedback-list">
-      <li>Vedant – “I love being part of a team that believes in growth.”</li>
-      <li>Kunal – “Prithvi House gives me motivation and strength.”</li>
-      <li>Chinmay – “I enjoy every event and competition we have!”</li>
-      <li>Sejal – “The unity and energy in Prithvi House are unmatched.”</li>
-      <li>Aditi – “We are not just a house, we are a family.”</li>
-      <li>Tvisha – “Proud to represent the Earth and our team!”</li>
-      <li>Vishal – “Prithvi House helps me stay balanced and focused.”li>
-      <li>Mit – “Every event is a new learning experience.”li>
-      <li>Gauri – “We believe in peace, hard work, and creativity.”li>
-      <li>Abhinav – “It’s always fun being part of Prithvi House.”li>
-      <li>Jivani – “Our team spirit makes us stronger.”li>
-      <li>Yuvraj – “Go Prithvi House! Always forward.”li>
-      <li>Shlok – “We rise by lifting others.”li>
-      <li>Sarth – “I feel proud to represent our house.”li>
-      <li>Arnav – “Every challenge makes us better.”li>
-      <li>Aditya – “Our motto keeps me inspired every day.”li>
-      <li>Swarali – “Prithvi House means teamwork and passion.”li>
-      <li>Jagrav – “We always give our best together.”li>
-      <li>Ishita – “Nature, balance, and positivity define us.”li>
-      <li>Vaidehi – “Our strength is our unity.”li>
-      <li>Kinjal – “Proud to be part of the green spirit!”li>
-      <li>Aarohi – “We grow like trees, strong and humble.”li>
-      <li>Ansh – “Prithvi House rocks every event!”li>
-    </ul>
-  </section>
-
-  <!-- MEDIA -->
-  <section id="media" class="section">
-    <h2>Photos & Media</h2>
-    <div class="home-card">
-      <p>🎥 Explore our moments, achievements, and videos on our official YouTube Channel.</p>
-      <a href="https://www.youtube.com/@EISPrithvihouse" target="_blank" class="join-btn">Visit Our YouTube Channel</a>
-    </div>
-    <div class="media-gallery">
-      <iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=UU" title="Prithvi House Channel" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <!-- MAIL -->
-  <section id="mail" class="section">
-    <h2>Send a Message to Prithvi House Team</h2>
-
-    <!-- STEP 1: Choose Report / Feedback -->
-    <div id="mail-options" class="mail-choice">
-      <button class="mail-btn report"><span style="font-size:1.05rem">🚨</span>&nbsp;<span style="text-decoration:underline; text-transform:uppercase;">Report</span></button>
-      <button class="mail-btn feedback"><span style="font-size:1.05rem">💚</span>&nbsp;<span style="text-decoration:underline; text-transform:uppercase;">Feedback</span></button>
-    </div>
-
-    <!-- STEP 2: Choose WhatsApp / Email -->
-    <div id="method-options" class="method-choice" style="display:none;">
-      <div id="choice-title"> </div>
-      <!-- BACK BUTTON inserted here (top-left inside method-options) -->
-      <button class="back-btn" id="method-back" title="Back">←</button>
-
-      <button class="method-btn whatsapp"><span style="font-weight:800">💬</span>&nbsp;<span style="font-weight:700">Send on WhatsApp</span><br><small style="opacity:0.9">Direct to +91 8080462808</small></button>
-      <button class="method-btn email"><span style="font-weight:800">✉️</span>&nbsp;<span style="font-weight:700">Send via Email</span><br><small style="opacity:0.9">Securely via EmailJS</small></button>
-    </div>
-
-    <!-- STEP 3: Email FORM (appears only if Email chosen) -->
-    <form id="contact-form" style="display:none;">
-      <!-- BACK BUTTON inserted inside form (top-left) -->
-      <button class="back-btn" id="form-back" title="Back">←</button>
-
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <textarea id="message" rows="4" placeholder="Your Message..." required></textarea>
-      <button type="submit">Send Mail</button>
-    </form>
-
-    <p id="mail-status"></p>
-  </section>
-</main>
-
-<script>
-// ===== keep your original menu toggle exactly =====
+</form><p id="mail-status"></p></section></main><script>
+            
+// MENU TOGGLE
+            
 const hamburger=document.querySelector(".hamburger");
+            
 const nav=document.querySelector("nav");
+            
 const links=document.querySelectorAll("nav a");
+            
 const sections=document.querySelectorAll(".section");
+            
 hamburger.addEventListener("click",()=>{nav.classList.toggle("show");});
+            
 links.forEach(link=>{link.addEventListener("click",e=>{
+            
   e.preventDefault();
+            
   const id=link.getAttribute("data-section");
+            
   sections.forEach(s=>s.classList.remove("active"));
+            
   document.getElementById(id).classList.add("active");
+            
   nav.classList.remove("show");
+            
 });});
+            
 
-// ===== Chart (keeps original data & labels) =====
+            
+// STUDENT CHART
+            
 const ctx=document.getElementById("studentChart").getContext("2d");
+            
 new Chart(ctx,{type:"bar",data:{labels:["Vedant","Kunal","Chinmay","Sejal","Aditi","Tvisha","Vishal","Mit","Gauri","Abhinav","Jivani","Yuvraj","Shlok","Sarth","Arnav","Aditya","Swarali","Jagrav","Ishita","Vaidehi","Kinjal","Aarohi","Ansh"],datasets:[{label:"Performance Score",data:[90,88,86,92,85,91,84,80,83,89,87,82,90,88,85,91,89,86,90,87,84,83,88],backgroundColor:["#ff4081","#7c4dff","#00e5ff","#ffeb3b","#ff5722","#4caf50","#03a9f4","#e91e63","#009688","#8bc34a","#ffc107","#9c27b0","#00bcd4","#f44336","#2196f3","#673ab7","#ff9800","#cddc39","#4db6ac","#3f51b5","#0097a7","#b388ff","#26c6da"]}]} , options:{responsive:true, scales:{y:{beginAtZero:true,max:100}}}});
+            
 
-// ===== MAIL LOGIC (preserved) + added back buttons behavior =====
+            
+// MAIL LOGIC (NEW) - preserves old content, only updates mail section behavior
+            
 const mailOptions=document.getElementById('mail-options');
+            
 const methodOptions=document.getElementById('method-options');
+            
 const contactForm=document.getElementById('contact-form');
+            
 const choiceTitle=document.getElementById('choice-title');
+            
 const mailStatus=document.getElementById('mail-status');
+            
 let selectedType="";
+            
 
+            
 // Step 1: select Report or Feedback
+            
 document.querySelector('.report').addEventListener('click',()=>{
+            
   selectedType="Report";
+            
   choiceTitle.innerHTML = `<strong style="font-size:1.05rem">You selected</strong><div style="font-size:1.25rem; margin-top:6px; font-weight:900; color:#ffdedb; text-shadow:0 0 12px rgba(255,100,100,0.6);">REPORT</div>`;
+            
   mailOptions.style.display="none";
+            
   methodOptions.style.display="flex";
+            
 });
+            
+
+            
 document.querySelector('.feedback').addEventListener('click',()=>{
+            
   selectedType="Feedback";
+            
   choiceTitle.innerHTML = `<strong style="font-size:1.05rem">You selected</strong><div style="font-size:1.25rem; margin-top:6px; font-weight:900; color:#d9ffea; text-shadow:0 0 12px rgba(80,255,150,0.5);">FEEDBACK</div>`;
+            
   mailOptions.style.display="none";
+            
   methodOptions.style.display="flex";
+            
 });
+            
 
-// Back from method-options -> mail-options
-document.getElementById('method-back').addEventListener('click',()=>{
-  methodOptions.style.display = "none";
-  mailOptions.style.display = "flex";
-  mailStatus.innerText = "";
-});
-
-// WhatsApp button behavior
+            
+// Step 2: WhatsApp -> open chat to specific number
+            
 document.querySelector('.whatsapp').addEventListener('click',()=>{
+            
+  // pre-filled, highlighted message template
+            
   const template = `*${selectedType} to Prithvi House*%0A%0AHello Team, %0A%0A[Write your message here]%0A%0AFrom: `;
-  window.open(`https://wa.me/918080462808?text=${encodeURIComponent(template)}`,'_blank');
+            
+  // open direct chat with Indian number 8080462808 (include country code)
+            
+  window.open(`https://wa.me/918080462808?text=${template}`,'_blank');
+            
 });
+            
 
-// Email -> show form
+            
+// Step 2: Email -> show the email form (uses EmailJS)
+            
 document.querySelector('.email').addEventListener('click',()=>{
+            
   methodOptions.style.display="none";
+            
   contactForm.style.display="flex";
+            
+  // pre-fill the message area with header so every message is tagged
+            
   document.getElementById('message').value = `[${selectedType}] `;
+            
+  // focus name field for faster UX
+            
   document.getElementById('name').focus();
+            
 });
+            
 
-// Back from form -> method-options
-document.getElementById('form-back').addEventListener('click',(e)=>{
-  e.preventDefault();
-  contactForm.style.display = "none";
-  methodOptions.style.display = "flex";
-  mailStatus.innerText = "";
-});
-
-// Send via EmailJS
+            
+// Step 3: send via EmailJS (keeps your service & template)
+            
 contactForm.addEventListener("submit",function(e){
+            
   e.preventDefault();
+            
   const name=document.getElementById("name").value.trim();
+            
   const email=document.getElementById("email").value.trim();
+            
   const message=document.getElementById("message").value.trim();
+            
+
+            
   if(!name || !email || !message){
+            
     mailStatus.innerText = "Please complete all fields.";
+            
     return;
+            
   }
+            
+
+            
   mailStatus.innerText = "Sending...";
+            
+
+            
   emailjs.send("service_2lklg8e","template_6cmr2gw",{
+            
     from_name: name,
+            
     from_email: email,
+            
     message: `[${selectedType}] ${message}`
+            
   }).then(()=>{
- 
+            
+    mailStatus.innerText="✅ Mail Sent Successfully!";
+            
+    contactForm.reset();
+            
+    contactForm.style.display="none";
+            
+    methodOptions.style.display="none";
+            
+    // return to initial mail choices after a short highlight
+            
+    setTimeout(()=>{ mailStatus.innerText=""; mailOptions.style.display="flex"; }, 1800);
+            
+  },(error)=>{
+            
+    console.error("EmailJS error:", error);
+            
+    mailStatus.innerText="❌ Error sending mail! Please try again later.";
+            
+  });
+            
+});
+            
+</script></body></html>     
