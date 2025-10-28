@@ -1,180 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Prithvi House | Empros International School</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prithvi House | Student Performance</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
+  body{background:#f4f7fa;color:#222}
+  header{background:#2a7a5e;color:#fff;padding:15px;text-align:center;font-size:24px;font-weight:600;letter-spacing:1px}
+  section{padding:20px}
+  h2{color:#2a7a5e;margin-bottom:15px;text-align:center;font-size:22px}
 
-  <!-- Chart.js & EmailJS (unchanged) -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script> emailjs.init("EzWnTJC9VB_yxVTL0"); </script>
+  /* Students Leading Section */
+  .students-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:15px;margin-top:15px}
+  .student{background:#fff;padding:12px 15px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,0.1);cursor:pointer;transition:transform .2s,box-shadow .2s}
+  .student:hover{transform:translateY(-4px);box-shadow:0 4px 10px rgba(0,0,0,0.15)}
+  .student .star{color:#ffb400;font-size:18px;margin-left:5px}
 
-  <!-- Stylesheet (separate file) -->
-  <link rel="stylesheet" href="styles.css">
+  /* Popup */
+  .popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;visibility:hidden;opacity:0;transition:.3s}
+  .popup.active{visibility:visible;opacity:1}
+  .popup-content{background:#fff;padding:25px;border-radius:16px;width:90%;max-width:400px;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,0.3);animation:scaleIn .3s ease}
+  @keyframes scaleIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+  .popup-content h3{color:#2a7a5e;margin-bottom:10px}
+  .popup-content p{margin:5px 0;font-size:15px}
+  .close-btn{margin-top:15px;padding:8px 20px;background:#2a7a5e;color:#fff;border:none;border-radius:8px;cursor:pointer}
+  .close-btn:hover{background:#246d53}
+
+  /* Report/Feedback Section */
+  .report-section{margin-top:30px}
+  .menu{display:flex;flex-direction:column;gap:10px;align-items:center}
+  .menu button{background:#2a7a5e;color:#fff;border:none;padding:10px 25px;border-radius:10px;font-size:16px;cursor:pointer;transition:.3s}
+  .menu button:hover{background:#246d53}
+  .hidden{display:none}
+
+  .back-btn{position:absolute;top:15px;left:15px;background:none;border:none;color:#2a7a5e;font-size:20px;cursor:pointer}
+
+  .form-box{position:relative;background:#fff;padding:20px;border-radius:14px;box-shadow:0 3px 10px rgba(0,0,0,0.1);max-width:400px;margin:30px auto;text-align:center}
+  .form-box input,.form-box textarea{width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:8px;font-size:15px}
+  .form-box button{background:#2a7a5e;color:#fff;padding:10px 20px;border:none;border-radius:10px;cursor:pointer;margin-top:10px}
+  .form-box button:hover{background:#246d53}
+</style>
 </head>
 <body>
-  <audio autoplay>
-    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9e1b98c8c0.mp3" type="audio/mp3">
-  </audio>
 
-  <div class="hamburger">&#9776;</div>
-  <nav>
-    <ul>
-      <li><a href="#" data-section="home">🏠 Home</a></li>
-      <li><a href="#" data-section="students">🎯 Students Leading</a></li>
-      <li><a href="#" data-section="events">🏅 Upcoming Events/Sports</a></li>
-      <li><a href="#" data-section="info">ℹ️ About Prithvi House</a></li>
-      <li><a href="#" data-section="feedback">💬 Feedbacks</a></li>
-      <li><a href="#" data-section="media">📸 Photos / Media</a></li>
-      <li><a href="#" data-section="mail">✉️ report/feedback Mail</a></li>
-    </ul>
-  </nav>
+<header>Prithvi House | Students Leading</header>
 
-  <main>
-    <!-- HOME -->
-    <section id="home" class="section active">
-      <div class="home-container">
-        <h1>Welcome to Prithvi House</h1>
-        <p class="tagline">"The Green Guardians of Empros International School"</p>
-        <p class="desc">Prithvi House represents growth, balance, and harmony with nature. We believe in teamwork, discipline, and innovation — shining bright in academics, sports, and culture alike.</p>
+<section>
+  <h2>🏅 Students Leading</h2>
+  <div class="students-list" id="studentsList">
+    <!-- JS will generate students -->
+  </div>
+</section>
 
-        <div class="home-card">
-          <h2>About This Website</h2>
-          <p>This is the official platform for Prithvi House members at Empros International School, Talegaon Dabhade. Here you can explore our leading students, upcoming inter-house events, house updates, and even send us your valuable feedback.</p>
-        </div>
+<!-- Popup for student details -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <h3 id="studentName"></h3>
+    <p><b>Sports Performance:</b> <span id="sports"></span></p>
+    <p><b>Behaviour:</b> <span id="behaviour"></span></p>
+    <p><b>Rating of Prefect:</b> <span id="rating"></span></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+</div>
 
-        <div class="home-card">
-          <h2>Join Our Community</h2>
-          <a href="https://chat.whatsapp.com/KDaPoZXibz4CE5ouyIKdVR?mode=wwc" target="_blank" class="join-btn">Join WhatsApp Community</a>
-        </div>
-
-        <div class="home-footer"><p>“Together we grow, together we shine – We are Prithvi House.” 🌍</p></div>
-      </div>
-    </section>
-
-    <!-- STUDENTS -->
-    <section id="students" class="section">
-      <h2>Top Performing Students</h2>
-      <canvas id="studentChart"></canvas>
-
-      <!-- NEW: Clickable student list (keeps original names, adds modal) -->
-      <div class="student-list" aria-label="Students list">
-        <!-- We'll populate items in JS for exact control; include markup fallback here -->
-      </div>
-    </section>
-
-    <!-- EVENTS -->
-    <section id="events" class="section">
-      <h2>Upcoming Events & Sports</h2>
-      <ul class="event-list">
-        <li>🏏 Inter-House Cricket Matches update soon</li>
-        <li>🏃‍♀️ Annual Sports Meet – update soon</li>
-        <li>⚽ Inter-House Football Finals – Date to be Announced</li>
-        <li>🏆 Tug of War Championship – Coming Soon!</li>
-      </ul>
-    </section>
-
-    <!-- INFO -->
-    <section id="info" class="section">
-      <h2>About Prithvi House</h2>
-      <div class="info-card">
-        <strong>Prefect:</strong> Princika<br>
-        <strong>Vice Prefect:</strong> Kartik<br>
-        <strong>House Teacher:</strong> Prajita Nair Ma’am
-      </div>
-      <p>🌍 Prithvi House symbolizes <strong>Earth</strong>, the mother of life and balance. It represents strength, patience, and steady growth. We believe in nurturing talents, respecting all beings, and striving for excellence while staying humble.</p>
-      <p>Our motto: <em>“Rooted in values, rising towards excellence.”</em></p>
-    </section>
-
-    <!-- FEEDBACK -->
-    <section id="feedback" class="section">
-      <h2>Feedbacks from Prithvi House Students</h2>
-      <ul class="feedback-list">
-        <li>Vedant – “I love being part of a team that believes in growth.”</li>
-        <li>Kunal – “Prithvi House gives me motivation and strength.”</li>
-        <li>Chinmay – “I enjoy every event and competition we have!”</li>
-        <li>Sejal – “The unity and energy in Prithvi House are unmatched.”</li>
-        <li>Aditi – “We are not just a house, we are a family.”</li>
-        <li>Tvisha – “Proud to represent the Earth and our team!”</li>
-        <li>Vishal – “Prithvi House helps me stay balanced and focused.”</li>
-        <li>Mit – “Every event is a new learning experience.”</li>
-        <li>Gauri – “We believe in peace, hard work, and creativity.”</li>
-        <li>Abhinav – “It’s always fun being part of Prithvi House.”</li>
-        <li>Jivani – “Our team spirit makes us stronger.”li>
-        <li>Yuvraj – “Go Prithvi House! Always forward.”li>
-        <li>Shlok – “We rise by lifting others.”li>
-        <li>Sarth – “I feel proud to represent our house.”li>
-        <li>Arnav – “Every challenge makes us better.”li>
-        <li>Aditya – “Our motto keeps me inspired every day.”li>
-        <li>Swarali – “Prithvi House means teamwork and passion.”li>
-        <li>Jagrav – “We always give our best together.”li>
-        <li>Ishita – “Nature, balance, and positivity define us.”li>
-        <li>Vaidehi – “Our strength is our unity.”li>
-        <li>Kinjal – “Proud to be part of the green spirit!”li>
-        <li>Aarohi – “We grow like trees, strong and humble.”li>
-        <li>Ansh – “Prithvi House rocks every event!”li>
-      </ul>
-    </section>
-
-    <!-- MEDIA -->
-    <section id="media" class="section">
-      <h2>Photos & Media</h2>
-      <div class="home-card">
-        <p>🎥 Explore our moments, achievements, and videos on our official YouTube Channel.</p>
-        <a href="https://www.youtube.com/@EISPrithvihouse" target="_blank" class="join-btn">Visit Our YouTube Channel</a>
-      </div>
-      <div class="media-gallery">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=UU" title="Prithvi House Channel" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </section>
-
-    <!-- MAIL (UPDATED) -->
-    <section id="mail" class="section">
-      <h2>Send a Message to Prithvi House Team</h2>
-
-      <!-- STEP 1: Choose Report / Feedback -->
-      <div id="mail-options" class="mail-choice">
-        <button class="mail-btn report"><span style="font-size:1.05rem">🚨</span>&nbsp;<span style="text-decoration:underline; text-transform:uppercase;">Report</span></button>
-        <button class="mail-btn feedback"><span style="font-size:1.05rem">💚</span>&nbsp;<span style="text-decoration:underline; text-transform:uppercase;">Feedback</span></button>
-      </div>
-
-      <!-- STEP 2: Choose WhatsApp / Email (has back button top-left) -->
-      <div id="method-options" class="method-choice" style="display:none;">
-        <button id="method-back" class="top-back">← Back</button>
-        <div id="choice-title"> </div>
-        <button class="method-btn whatsapp"><span style="font-weight:800">💬</span>&nbsp;<span style="font-weight:700">Send on WhatsApp</span><br><small style="opacity:0.9">Direct to +91 8080462808</small></button>
-        <button class="method-btn email"><span style="font-weight:800">✉️</span>&nbsp;<span style="font-weight:700">Send via Email</span><br><small style="opacity:0.9">Securely via EmailJS</small></button>
-      </div>
-
-      <!-- STEP 3: Email FORM (appears only if Email chosen) -->
-      <form id="contact-form" style="display:none;">
-        <button id="form-back" class="top-back">← Back</button>
-        <input type="text" id="name" placeholder="Your Name" required>
-        <input type="email" id="email" placeholder="Your Email" required>
-        <textarea id="message" rows="4" placeholder="Your Message..." required></textarea>
-        <button type="submit">Send Mail</button>
-      </form>
-
-      <p id="mail-status"></p>
-    </section>
-  </main>
-
-  <!-- STUDENT DETAILS MODAL (hidden by default) -->
-  <div id="student-modal" class="modal" aria-hidden="true">
-    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button id="modal-close" class="modal-close" aria-label="Close">✕</button>
-      <h3 id="modal-title"></h3>
-      <div class="modal-body">
-        <p><strong>Sports Performance:</strong> <span id="modal-sports"></span></p>
-        <p><strong>Behaviour:</strong> <span id="modal-behaviour"></span></p>
-        <p><strong>Prefect Rating:</strong> <span id="modal-rating"></span></p>
-      </div>
-    </div>
-    <div class="modal-backdrop"></div>
+<section class="report-section">
+  <h2>📩 Report & Feedback</h2>
+  <div class="menu" id="mainMenu">
+    <button onclick="showReportMenu()">Send Report</button>
+    <button onclick="showFeedbackMenu()">Send Feedback</button>
   </div>
 
-  <!-- Script (separate file) -->
-  <script src="script.js"></script>
+  <div class="menu hidden" id="reportMenu">
+    <button class="back-btn" onclick="goBack('mainMenu')">←</button>
+    <button onclick="openEmailForm('Report')">Email</button>
+    <button onclick="sendWhatsApp('Report')">WhatsApp</button>
+  </div>
+
+  <div class="menu hidden" id="feedbackMenu">
+    <button class="back-btn" onclick="goBack('mainMenu')">←</button>
+    <button onclick="openEmailForm('Feedback')">Email</button>
+    <button onclick="sendWhatsApp('Feedback')">WhatsApp</button>
+  </div>
+
+  <div class="form-box hidden" id="emailForm">
+    <button class="back-btn" onclick="goBackEmail()">←</button>
+    <h3 id="formTitle">Send Email</h3>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea rows="4" placeholder="Write your message..."></textarea>
+    <button>Send</button>
+  </div>
+</section>
+
+<script>
+const students=[
+  {name:"Abhinav",star:true,sports:"Excellent in athletics",behaviour:"Disciplined and kind",rating:"5⭐"},
+  {name:"Chinmay",star:true,sports:"Great in football",behaviour:"Positive and helpful",rating:"4.5⭐"},
+  {name:"Sejal",star:true,sports:"Strong in basketball",behaviour:"Confident and calm",rating:"5⭐"},
+  {name:"Ishita",star:true,sports:"Great in yoga & dance",behaviour:"Supportive",rating:"5⭐"},
+  {name:"Aditi",star:true,sports:"Fast runner",behaviour:"Focused and respectful",rating:"4.8⭐"},
+  {name:"Tvisha",star:true,sports:"Good in swimming",behaviour:"Cheerful and polite",rating:"4.7⭐"},
+  {name:"Vishal",star:true,sports:"Cricket expert",behaviour:"Team player",rating:"5⭐"},
+  {name:"Karan",star:true,sports:"All-rounder",behaviour:"Leadership quality",rating:"5⭐"},
+  {name:"Riya",star:false,sports:"Dance",behaviour:"Nice and active",rating:"4⭐"},
+  {name:"Arjun",star:false,sports:"Kho-Kho",behaviour:"Polite",rating:"4⭐"},
+  {name:"Kavya",star:false,sports:"Singing",behaviour:"Calm",rating:"4⭐"}
+];
+
+const list=document.getElementById("studentsList");
+students.forEach(s=>{
+  const div=document.createElement("div");
+  div.className="student";
+  div.innerHTML=`${s.name}${s.star?'<span class="star">⭐</span>':''}`;
+  div.onclick=()=>openPopup(s);
+  list.appendChild(div);
+});
+
+function openPopup(s){
+  document.getElementById("studentName").innerText=s.name;
+  document.getElementById("sports").innerText=s.sports;
+  document.getElementById("behaviour").innerText=s.behaviour;
+  document.getElementById("rating").innerText=s.rating;
+  document.getElementById("popup").classList.add("active");
+}
+function closePopup(){
+  document.getElementById("popup").classList.remove("active");
+}
+
+/* Report / Feedback navigation */
+function showReportMenu(){
+  document.getElementById("mainMenu").classList.add("hidden");
+  document.getElementById("reportMenu").classList.remove("hidden");
+}
+function showFeedbackMenu(){
+  document.getElementById("mainMenu").classList.add("hidden");
+  document.getElementById("feedbackMenu").classList.remove("hidden");
+}
+function goBack(menuId){
+  document.querySelectorAll('.menu').forEach(m=>m.classList.add('hidden'));
+  document.getElementById(menuId).classList.remove('hidden');
+}
+function openEmailForm(type){
+  document.querySelectorAll('.menu').forEach(m=>m.classList.add('hidden'));
+  document.getElementById("emailForm").classList.remove("hidden");
+  document.getElementById("formTitle").innerText=`Send ${type} via Email`;
+}
+function goBackEmail(){
+  document.getElementById("emailForm").classList.add("hidden");
+  document.getElementById("mainMenu").classList.remove("hidden");
+}
+function sendWhatsApp(type){
+  alert(`${type} will be sent through WhatsApp!`);
+}
+</script>
 </body>
 </html>
