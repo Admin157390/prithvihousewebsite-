@@ -339,7 +339,347 @@
          - subtle, low-cost
          ------------------- */
       const pCtx = partic
-      particlesCanvas.getContext('2d');
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Prithvi House | Empros International School</title>
+
+  <!-- External libs (Chart.js + EmailJS kept as you had) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <script>
+    // keep your EmailJS init (unchanged)
+    try {
+      emailjs.init("EzWnTJC9VB_yxVTL0");
+    } catch (e) {
+      console.warn("EmailJS init failed:", e);
+    }
+  </script>
+
+  <style>
+    /* === GLOBAL RESET / ORIGINAL VISUALS PRESERVED === */
+    * { margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif; scroll-behavior:smooth; }
+    html,body{height:100%}
+    body {
+      color:#fff;
+      overflow-x:hidden;
+      min-height:100vh;
+      background:linear-gradient(270deg,#6a11cb,#2575fc,#00c6ff,#0072ff,#ff512f,#dd2476);
+      background-size:1200% 1200%;
+      animation:bgAnimation 15s ease infinite;
+    }
+    @keyframes bgAnimation{
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
+    }
+
+    /* Customer Care button (top-left) */
+    .customer-care {
+      position:fixed;
+      top:18px;
+      left:68px; /* leave space for hamburger */
+      z-index:10050;
+      background:linear-gradient(90deg,#00c853,#00796b);
+      color:white;
+      padding:8px 12px;
+      border-radius:10px;
+      font-weight:700;
+      box-shadow:0 6px 20px rgba(0,0,0,0.4);
+      cursor:pointer;
+      border:2px solid rgba(255,255,255,0.06);
+    }
+    .customer-care:hover{ transform:translateY(-2px); }
+
+    /* === HAMBURGER MENU (unchanged text/structure) === */
+    .hamburger { position:fixed; top:20px; left:20px; font-size:28px; cursor:pointer; color:#fff; z-index:9999; transition:transform 0.3s ease,color 0.3s; text-shadow:0 0 10px rgba(255,255,255,0.5); }
+    .hamburger:hover { transform:scale(1.2); color:#ffeb3b; }
+
+    /* === SIDE NAV MENU (unchanged) === */
+    nav { position:fixed; left:-250px; top:0; height:100%; width:220px; background:rgba(0,0,0,0.75); backdrop-filter:blur(12px); padding-top:80px; transition:left 0.4s ease-in-out; box-shadow:4px 0 10px rgba(0,0,0,0.5); z-index:9998; border-right:2px solid rgba(255,255,255,0.1); }
+    nav.show { left:0; }
+    nav ul { list-style:none; display:flex; flex-direction:column; gap:18px; padding-left:25px; }
+    nav a { text-decoration:none; color:#fff; font-size:1.05rem; font-weight:500; transition:all 0.3s; letter-spacing:0.5px; }
+    nav a:hover { color:#00e5ff; transform:translateX(6px); text-shadow:0 0 8px #00e5ff; }
+
+    /* === MAIN LAYOUT (unchanged) === */
+    main { padding:40px 20px; max-width:1000px; margin:90px auto; position:relative; z-index:1; }
+
+    /* === SECTIONS/HEADINGS & other styles preserved exactly as original code === */
+    .section { display:none; animation:fadeIn 0.8s ease-in-out; }
+    .section.active { display:block; }
+    h1,h2 { color:#fff; margin-bottom:14px; text-shadow:0 0 12px rgba(255,255,255,0.5); }
+    h1{ font-size:2.3rem; } h2{ font-size:1.8rem; }
+    .home-container { text-align:center; margin-top:40px; animation:fadeIn 1s ease-in-out; }
+    .home-container h1 { font-size:2.5rem; background:linear-gradient(90deg,#ffeb3b,#00e5ff,#ff4081); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glowText 2s infinite alternate; }
+    @keyframes glowText{ from{text-shadow:0 0 10px rgba(255,255,255,0.3);} to{text-shadow:0 0 25px rgba(255,255,255,0.8);} }
+    .tagline{ font-size:1.3rem; font-weight:600; color:#f1f8e9; margin-bottom:20px; letter-spacing:1px; }
+    .desc{ font-size:1rem; color:#f5f5f5; max-width:750px; margin:0 auto 25px; line-height:1.6; }
+    .home-card{ background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,0.25); border-radius:14px; padding:25px; margin:20px auto; width:85%; max-width:550px; box-shadow:0 4px 20px rgba(0,0,0,0.3); transition: transform 0.3s, box-shadow 0.3s; }
+    .home-card:hover{ transform:translateY(-4px); box-shadow:0 6px 25px rgba(255,255,255,0.2); }
+    .join-btn{ display:inline-block; margin-top:15px; background:linear-gradient(135deg,#00e5ff,#7c4dff,#ff4081); color:white; text-decoration:none; padding:10px 20px; border-radius:30px; font-weight:600; box-shadow:0 0 10px rgba(255,255,255,0.4); transition:all 0.3s; }
+    .join-btn:hover{ transform:scale(1.05); box-shadow:0 0 20px rgba(255,255,255,0.7); }
+    .home-footer p{ margin-top:30px; font-style:italic; color:#ffebee; }
+    .event-list li,.feedback-list li{ padding:10px 12px; background: rgba(255,255,255,0.12); border-radius:8px; margin-bottom:10px; box-shadow:0 1px 4px rgba(0,0,0,0.3); transition: transform 0.2s, background 0.3s; }
+    .event-list li:hover,.feedback-list li:hover{ transform:scale(1.02); background: rgba(255,255,255,0.25); }
+    .info-card{ background: rgba(255,255,255,0.15); padding:15px 20px; border-left:5px solid #ffeb3b; border-radius:10px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.3); color:#fff; }
+    form{ display:flex; flex-direction:column; gap:12px; max-width:400px; background: rgba(255,255,255,0.1); padding:25px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.3); backdrop-filter: blur(10px); }
+    input,textarea{ padding:12px; border:none; border-radius:10px; font-size:1rem; background: rgba(255,255,255,0.9); color:#000; transition:box-shadow 0.3s, transform 0.2s; }
+    input:focus,textarea:focus{ box-shadow:0 0 10px #00e5ff; transform:scale(1.02); outline:none; }
+    button{ background:linear-gradient(135deg,#ff4081,#7c4dff); color:white; border:none; border-radius:10px; padding:12px; font-weight:bold; cursor:pointer; transition:background 0.3s, transform 0.2s; box-shadow:0 0 10px rgba(255,255,255,0.4); }
+    button:hover{ transform:scale(1.05); box-shadow:0 0 15px rgba(255,255,255,0.7); }
+    .mail-choice, .method-choice { display:flex; justify-content:center; gap:20px; margin:25px 0; flex-wrap:wrap; }
+    .mail-btn, .method-btn { font-size:1.05rem; font-weight:700; padding:14px 30px; border:none; border-radius:999px; cursor:pointer; color:#fff; transition:transform 0.25s, box-shadow 0.25s; box-shadow:0 6px 30px rgba(0,0,0,0.25); text-shadow:0 1px 8px rgba(0,0,0,0.2); }
+    .mail-btn:hover, .method-btn:hover{ transform:translateY(-4px) scale(1.03); box-shadow:0 10px 40px rgba(0,0,0,0.35); }
+    .report{ background:linear-gradient(90deg,#ff5252,#d32f2f); border:2px solid rgba(255,255,255,0.08); }
+    .feedback{ background:linear-gradient(90deg,#00e676,#00c853); border:2px solid rgba(255,255,255,0.08); }
+    .whatsapp{ background:linear-gradient(90deg,#25D366,#128C7E); border:2px solid rgba(255,255,255,0.08); }
+    .email{ background:linear-gradient(90deg,#448aff,#2962ff); border:2px solid rgba(255,255,255,0.08); }
+    #choice-title{ font-weight:700; letter-spacing:0.3px; color:#fff; text-shadow:0 0 12px rgba(255,255,255,0.5); width:100%; text-align:center; margin-bottom:6px; }
+    @media(max-width:768px){ main{ margin-top:60px; padding:20px; } .home-card{ width:95%; } .desc{ font-size:0.95rem; } .mail-btn, .method-btn{ padding:12px 20px; font-size:1rem; } }
+    @keyframes fadeIn{ from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+
+    /* === LOGIN OVERLAY & EFFECTS (green cinematic) - tuned for speed & smoothness === */
+    #loginOverlay {
+      position:fixed; inset:0; z-index:10020; display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(180deg, rgba(0,80,30,0.85), rgba(0,40,20,0.95));
+      overflow:hidden;
+    }
+    canvas.fullLayer { position:absolute; inset:0; width:100%; height:100%; display:block; z-index:10021; pointer-events:none; }
+    #loginCard {
+      position:relative; z-index:10030; width:420px; max-width:94%; padding:28px; border-radius:16px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(245,255,245,0.96));
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6); transform: translateY(24px) scale(0.98); opacity:0;
+      transition: transform 0.55s cubic-bezier(.2,.95,.25,1), opacity 0.45s ease;
+    }
+    #loginCard.show { transform: translateY(0) scale(1); opacity:1; }
+    #loginCard h2 { color:#064b2b; margin-bottom:6px; }
+    #loginCard p { color:#064b2b; opacity:0.95; margin-bottom:14px; }
+    .login-input { width:100%; padding:12px; border-radius:10px; border:2px solid rgba(11,95,43,0.12); font-size:15px; margin-bottom:12px; background:white; color:#000; }
+    .login-btns { display:flex; gap:12px; margin-top:6px; }
+    .btn-primary { flex:1; background:linear-gradient(90deg,#00a859,#007f3b); color:#fff; border:none; padding:11px 12px; border-radius:10px; cursor:pointer; font-weight:700; }
+    .btn-ghost { flex:1; background:transparent; color:#064b2b; border:2px solid rgba(6,75,43,0.12); padding:11px 12px; border-radius:10px; cursor:pointer; }
+    .small-note { font-size:13px; color:rgba(255,255,255,0.85); margin-top:10px; text-align:center; }
+    .login-error { color:#ffdddd; background:rgba(255,0,0,0.12); padding:8px 10px; border-radius:8px; margin-top:6px; display:none; font-size:14px; text-align:center; }
+    /* hide the allowed-names visual list to keep the login clean (JS still validates) */
+    .small-note { display:none; }
+    @media(max-width:420px){ #loginCard{ padding:16px; } }
+
+  </style>
+</head>
+<body>
+  <!-- Customer care button -->
+  <button id="customerCareBtn" class="customer-care" title="Contact Customer Care">Customer Care</button>
+
+  <!-- LOGIN OVERLAY (appears first) -->
+  <div id="loginOverlay" aria-hidden="false">
+    <!-- canvas order: base particles, leaves, explosion flash -->
+    <canvas id="particlesLayer" class="fullLayer"></canvas>
+    <canvas id="leavesLayer" class="fullLayer"></canvas>
+    <canvas id="explosionLayer" class="fullLayer"></canvas>
+
+    <div id="loginCard" role="dialog" aria-labelledby="loginTitle" aria-modal="true">
+      <h2 id="loginTitle">Prithvi House — Login</h2>
+      <p>Type your username (no password needed). If your name isn't in the list, use "Login as Guest".</p>
+
+      <input id="loginName" class="login-input" type="text" placeholder="Type your name (e.g. Vedant)" autocomplete="off" />
+
+      <div class="login-btns">
+        <button id="loginSubmit" class="btn-primary">Login</button>
+        <button id="guestBtn" class="btn-ghost">Login as Guest</button>
+      </div>
+
+      <div id="loginError" class="login-error">Name not recognized. You can use "Login as Guest" to continue.</div>
+      <!-- visible list intentionally removed for cleaner login (JS still validates) -->
+    </div>
+  </div>
+
+  <!-- Audio removed as requested -->
+  <div class="hamburger" style="z-index:2">☰</div>
+
+  <nav>
+    <ul>
+      <li><a href="#" data-section="home">🏠 Home</a></li>
+      <li><a href="#" data-section="students">🎯 Students Leading</a></li>
+      <li><a href="#" data-section="events">🏅 Upcoming Events/Sports</a></li>
+      <li><a href="#" data-section="info">ℹ️ About Prithvi House</a></li>
+      <li><a href="#" data-section="feedback">💬 Feedbacks</a></li>
+      <li><a href="#" data-section="media">📸 Photos / Media</a></li>
+      <li><a href="#" data-section="mail">✉️ report/feedback Mail</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- HOME -->
+    <section id="home" class="section active">
+      <div class="home-container">
+        <h1>Welcome to Prithvi House</h1>
+        <p class="tagline">"The Green Guardians of Empros International School"</p>
+        <p class="desc">Prithvi House represents growth, balance, and harmony with nature. We believe in teamwork, discipline, and innovation — shining bright in academics, sports, and culture alike.</p>
+
+        <div class="home-card">
+          <h2>About This Website</h2>
+          <p>This is the official platform for Prithvi House members at Empros International School, Talegaon Dabhade. Here you can explore our leading students, upcoming inter-house events, house updates, and even send us your valuable feedback.</p>
+        </div>
+
+        <div class="home-card">
+          <h2>Join Our Community</h2>
+          <a href="https://chat.whatsapp.com/KDaPoZXibz4CE5ouyIKdVR?mode=wwc" target="_blank" class="join-btn">Join WhatsApp Community</a>
+        </div>
+
+        <div class="home-footer"><p>“Together we grow, together we shine – We are Prithvi House.” 🌍</p></div>
+      </div>
+    </section>
+
+    <!-- STUDENTS -->
+    <section id="students" class="section">
+      <h2>Top Performing Students</h2>
+      <canvas id="studentChart"></canvas>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events" class="section">
+      <h2>Upcoming Events & Sports</h2>
+      <ul class="event-list">
+        <li>🏏 Inter-House Cricket Matches update soon</li>
+        <li>🏃‍♀️ Annual Sports Meet – update soon</li>
+        <li>⚽ Inter-House Football Finals – Date to be Announced</li>
+        <li>🏆 Tug of War Championship – Coming Soon!</li>
+      </ul>
+    </section>
+
+    <!-- INFO -->
+    <section id="info" class="section">
+      <h2>About Prithvi House</h2>
+      <div class="info-card">
+        <strong>Prefect:</strong> Princika<br>
+        <strong>Vice Prefect:</strong> Kartik<br>
+        <strong>House Teacher:</strong> Prajita Nair Ma’am
+      </div>
+      <p>🌍 Prithvi House symbolizes <strong>Earth</strong>, the mother of life and balance. It represents strength, patience, and steady growth. We believe in nurturing talents, respecting all beings, and striving for excellence while staying humble.</p>
+      <p>Our motto: <em>“Rooted in values, rising towards excellence.”</em></p>
+    </section>
+
+    <!-- FEEDBACK -->
+    <section id="feedback" class="section">
+      <h2>Feedbacks from Prithvi House Students</h2>
+      <ul class="feedback-list">
+        <li>Vedant – “I love being part of a team that believes in growth.”</li>
+        <li>Kunal – “Prithvi House gives me motivation and strength.”</li>
+        <li>Chinmay – “I enjoy every event and competition we have!”</li>
+        <li>Sejal – “The unity and energy in Prithvi House are unmatched.”</li>
+        <li>Aditi – “We are not just a house, we are a family.”</li>
+        <li>Tvisha – “Proud to represent the Earth and our team!”</li>
+        <li>Vishal – “Prithvi House helps me stay balanced and focused.”li>
+        <li>Mit – “Every event is a new learning experience.”li>
+        <li>Gauri – “We believe in peace, hard work, and creativity.”li>
+        <li>Abhinav – “It’s always fun being part of Prithvi House.”li>
+        <li>Jivani – “Our team spirit makes us stronger.”li>
+        <li>Yuvraj – “Go Prithvi House! Always forward.”li>
+        <li>Shlok – “We rise by lifting others.”li>
+        <li>Sarth – “I feel proud to represent our house.”li>
+        <li>Arnav – “Every challenge makes us better.”li>
+        <li>Aditya – “Our motto keeps me inspired every day.”li>
+        <li>Swarali – “Prithvi House means teamwork and passion.”li>
+        <li>Jagrav – “We always give our best together.”li>
+        <li>Ishita – “Nature, balance, and positivity define us.”li>
+        <li>Vaidehi – “Our strength is our unity.”li>
+        <li>Kinjal – “Proud to be part of the green spirit!”li>
+        <li>Aarohi – “We grow like trees, strong and humble.”li>
+        <li>Ansh – “Prithvi House rocks every event!”li>
+      </ul>
+    </section>
+
+    <!-- MEDIA -->
+    <section id="media" class="section">
+      <h2>Photos & Media</h2>
+      <div class="home-card">
+        <p>🎥 Explore our moments, achievements, and videos on our official YouTube Channel.</p>
+        <a href="https://www.youtube.com/@EISPrithvihouse" target="_blank" class="join-btn">Visit Our YouTube Channel</a>
+      </div>
+      <div class="media-gallery">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=UU" title="Prithvi House Channel" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- MAIL -->
+    <section id="mail" class="section">
+      <h2>Send a Message to Prithvi House Team</h2>
+
+      <!-- STEP 1: Choose Report / Feedback -->
+      <div id="mail-options" class="mail-choice">
+        <button class="mail-btn report"><span style="font-size:1.05rem">🚨</span> <span style="text-decoration:underline; text-transform:uppercase;">Report</span></button>
+        <button class="mail-btn feedback"><span style="font-size:1.05rem">💚</span> <span style="text-decoration:underline; text-transform:uppercase;">Feedback</span></button>
+      </div>
+
+      <!-- STEP 2: Choose WhatsApp / Email -->
+      <div id="method-options" class="method-choice" style="display:none;">
+        <div id="choice-title"> </div>
+        <button id="backMethod" class="back-btn" style="display:none; background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.4); color:#fff; border-radius:30px; padding:10px 25px; font-weight:600; cursor:pointer; margin-bottom:15px;">🔙 Back</button>
+        <button class="method-btn whatsapp"><span style="font-weight:800">💬</span> <span style="font-weight:700">Send on WhatsApp</span><br><small style="opacity:0.9">Direct to +91 8080462808</small></button>
+        <button class="method-btn email"><span style="font-weight:800">✉️</span> <span style="font-weight:700">Send via Email</span><br><small style="opacity:0.9">Securely via EmailJS</small></button>
+      </div>
+
+      <!-- STEP 3: Email FORM (appears only if Email chosen) -->
+      <form id="contact-form" style="display:none;">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" rows="4" placeholder="Your Message..." required></textarea>
+        <button type="submit">Send Mail</button>
+      </form>
+      <p id="mail-status"></p>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+
+      /* ================================
+         LOGIN OVERLAY: particles, leaves,
+         explosion (spark + flash) and reveal logic
+         Tuned for GitHub Pages and quick smoothness
+         ================================ */
+
+      // allowed usernames (case-insensitive)
+      const allowedUsers = [
+        "Vedant","Kunal","Chinmay","Sejal","Aditi","Tvisha","kartik","Princika",
+        "Jagraon","mit","Gauri","Abhinav","jivani","Yuvraj","shlok","sarth",
+        "Arnav","Aditya","swarali","jagrav","Ishita","vaidehi","Kinjal","Aarohi","Ansh"
+      ].map(s=>s.toLowerCase());
+
+      let currentUser = null;
+
+      // DOM references
+      const overlay = document.getElementById('loginOverlay');
+      const particlesCanvas = document.getElementById('particlesLayer');
+      const leavesCanvas = document.getElementById('leavesLayer');
+      const explosionCanvas = document.getElementById('explosionLayer');
+      const loginCard = document.getElementById('loginCard');
+      const loginName = document.getElementById('loginName');
+      const loginSubmit = document.getElementById('loginSubmit');
+      const guestBtn = document.getElementById('guestBtn');
+      const loginError = document.getElementById('loginError');
+
+      // base sizing for canvases
+      function sizeCanvas(c){
+        c.width = window.innerWidth * devicePixelRatio;
+        c.height = window.innerHeight * devicePixelRatio;
+        c.style.width = window.innerWidth + "px";
+        c.style.height = window.innerHeight + "px";
+        const ctx = c.getContext('2d');
+        ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+      }
+      sizeCanvas(particlesCanvas); sizeCanvas(leavesCanvas); sizeCanvas(explosionCanvas);
+      window.addEventListener('resize', ()=>{ sizeCanvas(particlesCanvas); sizeCanvas(leavesCanvas); sizeCanvas(explosionCanvas); });
+
+      /* -------------------
+         gentle ambient particles (background)
+         - subtle, low-cost
+         ------------------- */
+      const pCtx = particlesCanvas.getContext('2d');
       let particles = [];
       function createParticles(n=100){
         particles = [];
