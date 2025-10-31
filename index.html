@@ -342,4 +342,429 @@
           particles.push({
             x: Math.random()*particlesCanvas.width,
             y: Math.random()*particlesCanvas.height,
-            r
+            r: 0.8 + Math.random()*1.8,
+            vx: (Math.random()-0.5)*0.4,
+            vy: -0.1 - Math.random()*0.6,
+            alpha: 0.05 + Math.random()*0.6,
+            life: 200 + Math.random()*400
+          });
+        }
+      }
+      createParticles(140);
+      function updateParticles(){
+        pCtx.clearRect(0,0,particlesCanvas.width,particlesCanvas.height);
+        // subtle overlay
+        for(let p of particles){
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life--;
+          if(p.life < 0 || p.y < -50 || p.x < -50 || p.x > particlesCanvas.width+50) {
+            p.x = Math.random()*particlesCanvas.width;
+            p.y = particlesCanvas.height + Math.random()*100;
+            p.vx = (Math.random()-0.5)*0.6;
+            p.vy = -0.3 - Math.random()*0.8;
+            p.life = 200 + Math.random()*400;
+          }
+          pCtx.beginPath();
+          pCtx.fillStyle = `rgba(255,255,255,${p.alpha*0.7})`;
+          pCtx.arc(p.x,p.y,p.r,0,Math.PI*2);
+          pCtx.fill();
+        }
+        requestAnimationFrame(updateParticles);
+      }
+      updateParticles();
+
+      /* -------------------
+         falling leaves (visual)
+         ------------------- */
+      const lCtx = leavesCanvas.getContext('2d');
+      const leafImgs = []; // we will draw leaves using paths (no external images) — varied shapes
+      function leafShape(ctx,x,y,size,angle,hue){
+        ctx.save();
+        ctx.translate(x,y);
+        ctx.rotate(angle);
+        ctx.scale(size,size);
+        // leaf path
+        ctx.beginPath();
+        ctx.moveTo(0,0);
+        ctx.bezierCurveTo(12,-8,36,-10,52,2);
+        ctx.bezierCurveTo(36,18,12,20,0,0);
+        ctx.closePath();
+        const g = ctx.createLinearGradient(0,-10,40,20);
+        g.addColorStop(0, `hsl(${hue},60%,55%)`);
+        g.addColorStop(1, `hsl(${(hue+30)%360},60%,40%)`);
+        ctx.fillStyle = g;
+        ctx.shadowColor = `rgba(0,0,0,0.12)`;
+        ctx.shadowBlur = 6;
+        ctx.fill();
+        // midrib
+        ctx.beginPath();
+        ctx.moveTo(0,0);
+        ctx.quadraticCurveTo(25,0,52,2);
+        ctx.strokeStyle = `rgba(255,255,255,0.12)`;
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // create leaves
+      let leaves = [];
+      function createLeaves(count=22){
+        leaves = [];
+        for(let i=0;i<count;i++){
+          leaves.push({
+            x: Math.random()*leavesCanvas.width,
+            y: -Math.random()*leavesCanvas.height,
+            size: 0.6 + Math.random()*1.2,
+            angle: Math.random()*Math.PI*2,
+            rotSpeed: (Math.random()-0.5)*0.02,
+            vx: (Math.random()-0.5)*0.6,
+            vy: 0.6 + Math.random()*1.2,
+            hue: 100 + Math.random()*40,
+            sway: Math.random()*0.02 + 0.01,
+            life: 200 + Math.random()*600
+          });
+        }
+      }
+      createLeaves(28);
+
+      function updateLeaves(){
+        lCtx.clearRect(0,0,leavesCanvas.width,leavesCanvas.height);
+        for(let lf of leaves){
+          lf.x += lf.vx + Math.sin(lf.y*lf.sway)*0.7;
+          lf.y += lf.vy;
+          lf.angle += lf.rotSpeed;
+          lf.life--;
+          // draw leaf
+          leafShape(lCtx, lf.x, lf.y, lf.size, lf.angle, lf.hue);
+          if(lf.y > leavesCanvas.height + 40 || lf.x < -100 || lf.x > leavesCanvas.width + 100 || lf.life < 0){
+            // respawn from top occasionally (simulate continuous fall)
+            lf.x = Math.random()*leavesCanvas.width;
+            lf.y = -30 - Math.random()*200;
+            lf.size = 0.6 + Math.random()*1.4;
+            lf.vy = 0.6 + Math.random()*1.6;
+            lf.rotSpeed = (Math.random()-0.5)*0.03;
+            lf.hue = 100 + Math.random()*40;
+            lf.life = 200 + Math.random()*600;
+          }
+        }
+        requestAnimationFrame(updateLeaves);
+      }
+      // we will start leaves animation after a short delay to layer the entrance
+
+      /* -------------------
+         Explosion (spark blast) effect (cinematic)
+         - will run once then reveal login
+         ------------------- */
+      const eCtx = explosionCanvas.getContext('2d');
+      let explosionRunning = false;
+
+      function runExplosion(x = window.innerWidth/2, y = window.innerHeight/2){
+        if(explosionRunning) return;
+        explosionRunning = true;
+
+        // create spark particles
+        const sparks = [];
+        const sparkCount = 80 + Math.floor(Math.random()*60);
+        for(let i=0;i<sparkCount;i++){
+          const angle = Math.random()*Math.PI*2;
+          const speed = 2 + Math.random()*6;
+          sparks.push({
+            x, y,
+            vx: Math.cos(angle)*speed,
+            vy: Math.sin(angle)*speed,
+            life: 30 + Math.random()*40,
+            size: 2 + Math.random()*3,
+            hue: 50 + Math.random()*80,
+            alpha: 0.9 + Math.random()*0.2
+          });
+        }
+
+        // flash overlay variables
+        let flashAlpha = 0.9;
+        let frame = 0;
+        function tick(){
+          eCtx.clearRect(0,0,explosionCanvas.width,explosionCanvas.height);
+          // soft radial flash
+          if(flashAlpha > 0){
+            const g = eCtx.createRadialGradient(x,y,0,x,y,Math.max(window.innerWidth,window.innerHeight)*0.9);
+            g.addColorStop(0, `rgba(255,255,210,${flashAlpha})`);
+            g.addColorStop(0.2, `rgba(200,255,180,${flashAlpha*0.6})`);
+            g.addColorStop(1, `rgba(0,0,0,0)`);
+            eCtx.fillStyle = g;
+            eCtx.fillRect(0,0,explosionCanvas.width,explosionCanvas.height);
+            flashAlpha -= 0.03;
+          }
+
+          // draw sparks
+          for(let i=sparks.length-1;i>=0;i--){
+            const s = sparks[i];
+            s.x += s.vx;
+            s.y += s.vy;
+            s.vx *= 0.96; s.vy *= 0.96; s.vy += 0.08; // gravity
+            s.life--;
+            if(s.life <= 0) sparks.splice(i,1);
+            else {
+              eCtx.beginPath();
+              eCtx.fillStyle = `hsla(${s.hue},90%,60%,${s.alpha * (s.life/80)})`;
+              eCtx.shadowBlur = 12;
+              eCtx.shadowColor = `hsla(${s.hue},90%,60%,${s.alpha})`;
+              eCtx.arc(s.x, s.y, s.size * (s.life/60), 0, Math.PI*2);
+              eCtx.fill();
+            }
+          }
+
+          frame++;
+          if(sparks.length > 0 || flashAlpha > 0){
+            requestAnimationFrame(tick);
+          } else {
+            // after explosion finishes, fade out explosion canvas
+            eCtx.clearRect(0,0,explosionCanvas.width,explosionCanvas.height);
+            explosionRunning = false;
+            // reveal login card after a tiny delay
+            setTimeout(()=> loginCard.classList.add('show'), 160);
+          }
+        }
+
+        tick();
+      }
+
+      /* -------------------
+         orchestrate entrance:
+         - start particles,
+         - after 700ms start leaves drifting,
+         - after ~2200ms run explosion,
+         - then reveal login
+         ------------------- */
+      setTimeout(()=> {
+        // start leaves animation
+        updateLeaves();
+      }, 700);
+
+      setTimeout(()=> {
+        // explosion center slightly above center for cinematic feel
+        runExplosion(window.innerWidth*0.5, window.innerHeight*0.44);
+      }, 2200);
+
+      // If user clicks anywhere on overlay before reveal, trigger explosion early
+      overlay.addEventListener('click', (e)=>{
+        if(!explosionRunning){
+          // find click coords
+          const rect = overlay.getBoundingClientRect();
+          runExplosion(e.clientX - rect.left, e.clientY - rect.top);
+        }
+      });
+
+      // show login card also as fallback if explosion didn't trigger
+      setTimeout(()=> {
+        if(!loginCard.classList.contains('show') && !explosionRunning){
+          loginCard.classList.add('show');
+        }
+      }, 3800);
+
+      /* -------------------
+         Login logic (no password) — allowed users only, guest option
+         ------------------- */
+      function normalizeName(name){ return (name||"").trim().toLowerCase(); }
+
+      loginSubmit.addEventListener('click', ()=>{
+        const val = normalizeName(loginName.value);
+        if(!val){ loginError.style.display = "block"; loginError.innerText = "Please type your name."; return; }
+        if(allowedUsers.includes(val)){
+          currentUser = loginName.value.trim();
+          afterLogin();
+        } else {
+          loginError.style.display = "block";
+          loginError.innerText = "Name not recognized. Use 'Login as Guest' or re-check spelling.";
+        }
+      });
+
+      loginName.addEventListener('keydown', (e)=> { if(e.key === 'Enter') loginSubmit.click(); });
+
+      guestBtn.addEventListener('click', ()=>{
+        const guest = prompt("Enter guest name to continue (will appear as your name):", "");
+        if(guest && guest.trim().length > 0){
+          currentUser = guest.trim();
+          afterLogin();
+        }
+      });
+
+      function afterLogin(){
+        // fill mail name input when later used
+        const nameInputMain = document.getElementById('name');
+        if(nameInputMain) nameInputMain.value = currentUser;
+        // hide overlay with smooth transition
+        loginCard.classList.remove('show');
+        overlay.style.transition = 'opacity 0.8s ease, visibility 0.8s';
+        overlay.style.opacity = 0;
+        setTimeout(()=> { overlay.style.display = 'none'; overlay.setAttribute('aria-hidden','true'); }, 900);
+        // small welcome toast (console)
+        console.log("Logged in as:", currentUser);
+        // change customer care behavior to include user name in mail body (handled below)
+      }
+
+      /* ================================
+         CUSTOMER CARE button behavior
+         opens mailto: with subject and body
+         ================================ */
+      const careBtn = document.getElementById('customerCareBtn');
+      careBtn.addEventListener('click', ()=>{
+        // create mailto link
+        const to = "prithvihouseheadteamreport@gmail.com";
+        const subject = encodeURIComponent("Customer Care - Prithvi House");
+        const body = encodeURIComponent(`Hello Prithvi House Team,%0A%0A[Write your message here]%0A%0AFrom: ${currentUser ? currentUser : 'Visitor (not logged in)'}%0A`);
+        // open mail client
+        window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      });
+
+      /* ================================
+         ORIGINAL SITE JS (menu, navigation, chart, mail)
+         preserved & integrated
+         ================================ */
+
+      // MENU TOGGLE
+      const hamburger = document.querySelector(".hamburger");
+      const nav = document.querySelector("nav");
+      const links = document.querySelectorAll("nav a");
+      const sections = document.querySelectorAll(".section");
+
+      hamburger.addEventListener("click", () => {
+        nav.classList.toggle("show");
+      });
+
+      // navigation links -> show sections
+      links.forEach(link => {
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          const id = link.getAttribute("data-section");
+          if (!id) return;
+          sections.forEach(s => s.classList.remove("active"));
+          const target = document.getElementById(id);
+          if (target) target.classList.add("active");
+          nav.classList.remove("show");
+        });
+      });
+
+      // STUDENT CHART
+      try {
+        const ctx = document.getElementById("studentChart").getContext("2d");
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: ["Vedant","Kunal","Chinmay","Sejal","Aditi","Tvisha","Vishal","Mit","Gauri","Abhinav","Jivani","Yuvraj","Shlok","Sarth","Arnav","Aditya","Swarali","Jagrav","Ishita","Vaidehi","Kinjal","Aarohi","Ansh"],
+            datasets: [{
+              label:"Performance Score",
+              data:[90,88,86,92,85,91,84,80,83,89,87,82,90,88,85,91,89,86,90,87,84,83,88],
+              backgroundColor:["#ff4081","#7c4dff","#00e5ff","#ffeb3b","#ff5722","#4caf50","#03a9f4","#e91e63","#009688","#8bc34a","#ffc107","#9c27b0","#00bcd4","#f44336","#2196f3","#673ab7","#ff9800","#cddc39","#4db6ac","#3f51b5","#0097a7","#b388ff","#26c6da"]
+            }]
+          },
+          options:{ responsive:true, scales:{ y:{ beginAtZero:true, max:100 } } }
+        });
+      } catch (err) {
+        console.warn("ChartJS init failed:", err);
+      }
+
+      // MAIL LOGIC (NEW)
+      const mailOptions = document.getElementById('mail-options');
+      const methodOptions = document.getElementById('method-options');
+      const contactForm = document.getElementById('contact-form');
+      const choiceTitle = document.getElementById('choice-title');
+      const mailStatus = document.getElementById('mail-status');
+
+      let selectedType = "";
+
+      // Step 1: select Report or Feedback
+      const reportBtn = document.querySelector('.report');
+      const feedbackBtn = document.querySelector('.feedback');
+
+      if (reportBtn) {
+        reportBtn.addEventListener('click', () => {
+          selectedType = "Report";
+          choiceTitle.innerHTML = `<strong style="font-size:1.05rem">You selected</strong>
+            <div style="font-size:1.25rem; margin-top:6px; font-weight:900; color:#ffdedb; text-shadow:0 0 12px rgba(255,100,100,0.6);">REPORT</div>`;
+          mailOptions.style.display = "none";
+          methodOptions.style.display = "flex";
+          const backMethod = document.getElementById('backMethod'); if(backMethod) backMethod.style.display='inline-block';
+        });
+      }
+
+      if (feedbackBtn) {
+        feedbackBtn.addEventListener('click', () => {
+          selectedType = "Feedback";
+          choiceTitle.innerHTML = `<strong style="font-size:1.05rem">You selected</strong>
+            <div style="font-size:1.25rem; margin-top:6px; font-weight:900; color:#d9ffea; text-shadow:0 0 12px rgba(80,255,150,0.5);">FEEDBACK</div>`;
+          mailOptions.style.display = "none";
+          methodOptions.style.display = "flex";
+          const backMethod = document.getElementById('backMethod'); if(backMethod) backMethod.style.display='inline-block';
+        });
+      }
+
+      // back button on method options (if exists)
+      const backMethod = document.getElementById('backMethod');
+      if(backMethod) backMethod.addEventListener('click', ()=>{
+        methodOptions.style.display = "none";
+        mailOptions.style.display = "flex";
+        backMethod.style.display='none';
+      });
+
+      // Step 2: WhatsApp -> open chat to specific number
+      const waBtn = document.querySelector('.whatsapp');
+      if (waBtn) {
+        waBtn.addEventListener('click', () => {
+          const template = `*${selectedType} to Prithvi House*%0A%0AHello Team,%0A%0A[Write your message here]%0A%0AFrom: ${currentUser || ''}`;
+          const waUrl = `https://wa.me/918080462808?text=${encodeURIComponent(template)}`;
+          window.open(waUrl, '_blank');
+        });
+      }
+
+      // Step 2: Email -> show the email form (uses EmailJS)
+      const emailBtn = document.querySelector('.email');
+      if (emailBtn) {
+        emailBtn.addEventListener('click', () => {
+          methodOptions.style.display = "none";
+          contactForm.style.display = "flex";
+          document.getElementById('message').value = `[${selectedType}] `;
+          // prefill name with logged in user
+          if(currentUser){
+            document.getElementById('name').value = currentUser;
+          }
+          document.getElementById('email').focus();
+        });
+      }
+
+      // Step 3: send via EmailJS (keeps your service & template)
+      contactForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !email || !message) {
+          mailStatus.innerText = "Please complete all fields.";
+          return;
+        }
+
+        mailStatus.innerText = "Sending...";
+
+        // send using EmailJS
+        emailjs.send("service_2lklg8e", "template_6cmr2gw", {
+          from_name: name,
+          from_email: email,
+          message: `[${selectedType}] ${message}`
+        }).then(() => {
+          mailStatus.innerText = "✅ Mail Sent Successfully!";
+          contactForm.reset();
+          contactForm.style.display = "none";
+          methodOptions.style.display = "none";
+          setTimeout(()=>{ mailStatus.innerText=""; mailOptions.style.display="flex"; }, 1800);
+        }, (error) => {
+          console.error("EmailJS error:", error);
+          mailStatus.innerText = "❌ Error sending mail! Please try again later.";
+        });
+      });
+
+    }); // DOMContentLoaded end
+  </script>
+</body>
+</html>
+
