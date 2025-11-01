@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Prithvi House | Empros International School</title>
 
-  <!-- External libs (kept from original) -->
+  <!-- External libs (kept from your original) -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
   <script>
-    // keep your EmailJS init
+    // keep your EmailJS init (from original)
     try {
       emailjs.init("EzWnTJC9VB_yxVTL0");
     } catch (e) {
@@ -19,26 +19,24 @@
   </script>
 
   <style>
-    /* ===================== INTRO: ENHANCED SOIL + REALISTIC 3D-ILLUSION TREE ===================== */
+    /* ====================== INTRO: realistic soil + CSS 3D-illusion tree ====================== */
     :root{
       --soil-top:#7a5a42;
       --soil-mid:#5a3f2a;
       --soil-deep:#3b2617;
       --trunk-1:#70442a;
       --trunk-2:#55321f;
-      --bark-dark:rgba(0,0,0,0.35);
-      --leaf-dark:#336633;
-      --leaf-mid:#4aa24a;
-      --leaf-light:#b9f6be;
-      --sun-glow: rgba(255,215,120,0.12);
+      --leaf-dark:#2f6a34;
+      --leaf-mid:#3ea84b;
+      --leaf-light:#c7f7c6;
     }
 
     /* Full-screen intro overlay */
     #introOverlay {
       position: fixed;
       inset: 0;
-      z-index: 99999;
-      background: linear-gradient(180deg, rgba(6,12,18,0.96) 0%, rgba(6,10,18,0.94) 60%, rgba(0,0,0,0.6) 100%);
+      z-index: 999999;
+      background: linear-gradient(180deg, rgba(4,8,12,0.95) 0%, rgba(4,8,12,0.92) 60%, rgba(0,0,0,0.6) 100%);
       display:flex;
       align-items:flex-end;
       justify-content:center;
@@ -56,7 +54,7 @@
       transform-style:preserve-3d;
     }
 
-    /* ================= SOIL: layered, textured and realistic ================= */
+    /* ---------------- SOIL ---------------- */
     .soil {
       position:absolute;
       bottom:0;
@@ -64,16 +62,12 @@
       width:100%;
       height:22vh;
       z-index:12;
-      /* layered soil gradients for depth */
       background:
         radial-gradient(1200px 220px at 50% 65%, rgba(255,255,255,0.02), transparent 10%),
         linear-gradient(180deg, var(--soil-top) 0%, var(--soil-mid) 45%, var(--soil-deep) 100%);
-
       box-shadow: inset 0 32px 64px rgba(0,0,0,0.65), 0 -8px 18px rgba(0,0,0,0.25);
       transform-origin: bottom center;
     }
-
-    /* top soil ridge to form a planting spot */
     .soil .ridge {
       position:absolute;
       left:50%;
@@ -81,17 +75,12 @@
       bottom:5%;
       width:48%;
       height:58%;
-      background:
-        radial-gradient(60% 50% at 50% 40%, rgba(255,255,255,0.03), transparent 16%),
-        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));
       border-radius:48%;
       box-shadow: inset 0 -18px 36px rgba(0,0,0,0.45);
       filter: blur(0.8px);
       z-index:13;
       overflow:hidden;
     }
-
-    /* soil granular texture using repeating-radial gradients */
     .soil .texture {
       position:absolute;
       inset:0;
@@ -102,8 +91,6 @@
       opacity:0.95;
       mix-blend-mode:multiply;
     }
-
-    /* small pebbles */
     .soil .pebble {
       position:absolute;
       width:6px;
@@ -113,8 +100,6 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.45);
       opacity:0.9;
     }
-
-    /* seed landing area highlight */
     .soil .spot {
       position:absolute;
       left:50%;
@@ -128,7 +113,7 @@
       opacity:0.9;
     }
 
-    /* ================= SEED drop ================= */
+    /* ---------------- SEED DROP ---------------- */
     .seed {
       position:absolute;
       top:-8vh;
@@ -147,8 +132,6 @@
       60%{ top:60vh; transform:translateX(-50%) scale(1.04) rotate(6deg); }
       100%{ top:68vh; transform:translateX(-50%) scale(0.92) rotate(0deg); }
     }
-
-    /* hit dust ring on soil */
     .soil-ripple {
       position:absolute;
       left:50%;
@@ -168,7 +151,7 @@
       100%{ opacity:0; transform:translateX(-50%) scale(1.48); }
     }
 
-    /* ================= water drops (few then short rain) ================= */
+    /* ---------------- WATER + SUN + WIND ---------------- */
     .water-drop {
       position:absolute;
       width:8px; height:14px;
@@ -194,7 +177,6 @@
       100%{ transform:translateY(88vh) translateX(34px) rotate(20deg); opacity:0; }
     }
 
-    /* ================= sun beam + flash ================= */
     .sunbeam {
       position:absolute;
       top:-22%;
@@ -213,7 +195,6 @@
       60%{ opacity:0.92; transform:skewX(-18deg) translateX(6%) scaleY(1.05); }
       100%{ opacity:0.0; transform:skewX(-18deg) translateX(-8%) scaleY(1.25); }
     }
-
     .sun-flash {
       position:absolute;
       top:6%;
@@ -234,7 +215,6 @@
       100%{ opacity:0.0; transform:scale(1.7); }
     }
 
-    /* subtle wind streaks */
     .wind {
       position:absolute;
       left:-20%;
@@ -256,7 +236,7 @@
       100%{ opacity:0; transform:translateX(60%) rotate(4deg); }
     }
 
-    /* ================= TREE: trunk with bark texture + layered canopy ================= */
+    /* ---------------- TREE (trunk + canopy) ---------------- */
     .tree-wrap {
       position:absolute;
       left:50%;
@@ -270,8 +250,6 @@
       justify-content:center;
       perspective:900px;
     }
-
-    /* Trunk: taller, textured, with bark lines via pseudo-elements */
     .tree-trunk {
       position:relative;
       width:42px;
@@ -300,7 +278,6 @@
       left:auto; right:6px; transform:rotate(2deg);
       opacity:0.12;
     }
-    /* bark lines for texture */
     .tree-trunk .bark {
       position:absolute;
       inset: 8% 6%;
@@ -309,14 +286,12 @@
       opacity:0.14;
       mix-blend-mode:multiply;
     }
-
     @keyframes growTrunk {
       0%{ height:0; transform: translateY(0) rotateX(10deg) scaleY(0.08); opacity:0.95; }
       50%{ height:128px; transform: translateY(0) rotateX(6deg) scaleY(1.03); opacity:1; }
       100%{ height:192px; transform: translateY(0) rotateX(0deg) scaleY(1); opacity:1; }
     }
 
-    /* branches: two broad branches with subtle bark */
     .branch-left, .branch-right {
       position:absolute;
       bottom:62%;
@@ -331,13 +306,11 @@
     }
     .branch-left { left:-108px; transform: rotate(-24deg) translateZ(-26px); animation-delay:2360ms; }
     .branch-right { left:58px; transform: rotate(24deg) translateZ(10px); animation-delay:2420ms; }
-
     @keyframes branchPop {
       0%{ opacity:0; transform: scaleX(0.06) rotate(-12deg); }
       100%{ opacity:1; transform: scaleX(1) rotate(0deg); }
     }
 
-    /* Canopy: multiple layered clusters for depth */
     .canopy {
       position:absolute;
       bottom:72%;
@@ -356,8 +329,6 @@
       60%{ opacity:1; transform:translateX(-50%) translateY(-6px) scale(1.02) rotateX(4deg); }
       100%{ opacity:1; transform:translateX(-50%) translateY(0) scale(1) rotateX(0deg); }
     }
-
-    /* three layered canopy shapes (elliptical blobs), each with subtle leaf shapes repeated */
     .canopy .layer {
       position:absolute;
       width:72%;
@@ -387,23 +358,6 @@
       transform:translateX(6%) scale(0.94) rotate(4deg);
       opacity:0.95;
     }
-
-    /* small leaf shapes layered using multiple pseudo elements to add details */
-    .canopy .layer::before, .canopy .layer::after {
-      content:'';
-      position:absolute;
-      width:40%;
-      height:34%;
-      border-radius:48%;
-      left:6%;
-      top:12%;
-      background: radial-gradient(circle at 30% 22%, rgba(255,255,255,0.03), rgba(255,255,255,0.00));
-      opacity:0.18;
-      transform:rotate(-8deg);
-    }
-    .canopy .layer::after { left:auto; right:8%; top:18%; transform:rotate(10deg); opacity:0.14; }
-
-    /* shimmering glints on canopy */
     .canopy .glint {
       position:absolute;
       width:12%;
@@ -423,7 +377,6 @@
       100%{ opacity:0; transform:scale(0.9); }
     }
 
-    /* leaf drift particles (falling) */
     .leaf-particle {
       position:absolute;
       width:12px;
@@ -435,7 +388,6 @@
       z-index:44;
     }
 
-    /* slight camera sway */
     .intro-scene.sway {
       animation:cameraSway 1200ms 1800ms ease-out forwards;
     }
@@ -445,7 +397,7 @@
       100%{ transform: perspective(900px) rotateX(0deg) translateZ(0); }
     }
 
-    /* ================= LOGIN PANEL + SPEECH (unchanged flow but styled) ================= */
+    /* ---------------- LOGIN PANEL + SPEECH ---------------- */
     .login-panel {
       position:absolute;
       left:50%;
@@ -500,7 +452,6 @@
     }
     .enter-btn:hover { transform:translateY(-3px) scale(1.02); }
 
-    /* speech box + typing cursor (same logic as before) */
     .speech-box {
       position:absolute;
       left:50%;
@@ -537,13 +488,11 @@
     }
     @keyframes blink { 0%{opacity:1;}50%{opacity:0;}100%{opacity:1;} }
 
-    /* fade overlay out when complete */
     .overlay-hidden {
       transition: opacity 850ms ease, visibility 850ms;
       opacity:0; visibility:hidden; pointer-events:none;
     }
 
-    /* responsive adjustments */
     @media (max-width:640px){
       .login-panel{ width:92%; bottom:20%; padding:16px; }
       .speech-box{ font-size:0.98rem; width:86%; bottom:60%; }
@@ -551,7 +500,7 @@
       .canopy { width:360px; height:260px; bottom:70%; }
     }
 
-    /* ================= keep original styles unchanged below ================= */
+    /* ================ Keep original styles unchanged below ================ */
 
     /* === GLOBAL RESET === */
     * { margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif; scroll-behavior:smooth; }
@@ -576,4 +525,605 @@
     .hamburger:hover { transform:scale(1.2); color:#ffeb3b; }
 
     /* === SIDE NAV MENU === */
-    nav { position:fixed; left:-250px; top:0; height:100%; width:220px; background:rgba(0,0,0,0.75); backdrop-filter:blur(12px); padding-top:80px; transition:left 0.4s ease-in-out; box-shadow:4px 0 10px rgba(0,0,0,0.5); z-index:
+    nav { position:fixed; left:-250px; top:0; height:100%; width:220px; background:rgba(0,0,0,0.75); backdrop-filter:blur(12px); padding-top:80px; transition:left 0.4s ease-in-out; box-shadow:4px 0 10px rgba(0,0,0,0.5); z-index:9998; border-right:2px solid rgba(255,255,255,0.1); }
+    nav.show { left:0; }
+    nav ul { list-style:none; display:flex; flex-direction:column; gap:18px; padding-left:25px; }
+    nav a { text-decoration:none; color:#fff; font-size:1.05rem; font-weight:500; transition:all 0.3s; letter-spacing:0.5px; }
+    nav a:hover { color:#00e5ff; transform:translateX(6px); text-shadow:0 0 8px #00e5ff; }
+
+    /* === MAIN LAYOUT === */
+    main { padding:40px 20px; max-width:1000px; margin:90px auto; }
+
+    /* === SECTIONS === */
+    .section { display:none; animation:fadeIn 0.8s ease-in-out; }
+    .section.active { display:block; }
+
+    /* === HEADINGS === */
+    h1,h2 { color:#fff; margin-bottom:14px; text-shadow:0 0 12px rgba(255,255,255,0.5); }
+    h1{ font-size:2.3rem; } h2{ font-size:1.8rem; }
+
+    /* === HOME PAGE === */
+    .home-container { text-align:center; margin-top:40px; animation:fadeIn 1s ease-in-out; }
+    .home-container h1 { font-size:2.5rem; background:linear-gradient(90deg,#ffeb3b,#00e5ff,#ff4081); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glowText 2s infinite alternate; }
+    @keyframes glowText{ from{text-shadow:0 0 10px rgba(255,255,255,0.3);} to{text-shadow:0 0 25px rgba(255,255,255,0.8);} }
+    .tagline{ font-size:1.3rem; font-weight:600; color:#f1f8e9; margin-bottom:20px; letter-spacing:1px; }
+    .desc{ font-size:1rem; color:#f5f5f5; max-width:750px; margin:0 auto 25px; line-height:1.6; }
+    .home-card{ background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,0.25); border-radius:14px; padding:25px; margin:20px auto; width:85%; max-width:550px; box-shadow:0 4px 20px rgba(0,0,0,0.3); transition: transform 0.3s, box-shadow 0.3s; }
+    .home-card:hover{ transform:translateY(-4px); box-shadow:0 6px 25px rgba(255,255,255,0.2); }
+    .join-btn{ display:inline-block; margin-top:15px; background:linear-gradient(135deg,#00e5ff,#7c4dff,#ff4081); color:white; text-decoration:none; padding:10px 20px; border-radius:30px; font-weight:600; box-shadow:0 0 10px rgba(255,255,255,0.4); transition:all 0.3s; }
+    .join-btn:hover{ transform:scale(1.05); box-shadow:0 0 20px rgba(255,255,255,0.7); }
+    .home-footer p{ margin-top:30px; font-style:italic; color:#ffebee; }
+
+    /* === EVENT AND FEEDBACK LISTS === */
+    .event-list li,.feedback-list li{ padding:10px 12px; background: rgba(255,255,255,0.12); border-radius:8px; margin-bottom:10px; box-shadow:0 1px 4px rgba(0,0,0,0.3); transition: transform 0.2s, background 0.3s; }
+    .event-list li:hover,.feedback-list li:hover{ transform:scale(1.02); background: rgba(255,255,255,0.25); }
+
+    /* === INFO CARD === */
+    .info-card{ background: rgba(255,255,255,0.15); padding:15px 20px; border-left:5px solid #ffeb3b; border-radius:10px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.3); color:#fff; }
+
+    /* === FORM & MAIL UI === */
+    form{ display:flex; flex-direction:column; gap:12px; max-width:400px; background: rgba(255,255,255,0.1); padding:25px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.3); backdrop-filter: blur(10px); }
+    input,textarea{ padding:12px; border:none; border-radius:10px; font-size:1rem; background: rgba(255,255,255,0.9); color:#000; transition:box-shadow 0.3s, transform 0.2s; }
+    input:focus,textarea:focus{ box-shadow:0 0 10px #00e5ff; transform:scale(1.02); outline:none; }
+    button{ background:linear-gradient(135deg,#ff4081,#7c4dff); color:white; border:none; border-radius:10px; padding:12px; font-weight:bold; cursor:pointer; transition:background 0.3s, transform 0.2s; box-shadow:0 0 10px rgba(255,255,255,0.4); }
+    button:hover{ transform:scale(1.05); box-shadow:0 0 15px rgba(255,255,255,0.7); }
+
+    /* === HIGHLIGHTED OPTIONS (NEW MAIL UI) === */
+    .mail-choice, .method-choice { display:flex; justify-content:center; gap:20px; margin:25px 0; flex-wrap:wrap; }
+    .mail-btn, .method-btn { font-size:1.05rem; font-weight:700; padding:14px 30px; border:none; border-radius:999px; cursor:pointer; color:#fff; transition:transform 0.25s, box-shadow 0.25s; box-shadow:0 6px 30px rgba(0,0,0,0.25); text-shadow:0 1px 8px rgba(0,0,0,0.2); }
+    .mail-btn:hover, .method-btn:hover{ transform:translateY(-4px) scale(1.03); box-shadow:0 10px 40px rgba(0,0,0,0.35); }
+    .report{ background:linear-gradient(90deg,#ff5252,#d32f2f); border:2px solid rgba(255,255,255,0.08); }
+    .feedback{ background:linear-gradient(90deg,#00e676,#00c853); border:2px solid rgba(255,255,255,0.08); }
+    .whatsapp{ background:linear-gradient(90deg,#25D366,#128C7E); border:2px solid rgba(255,255,255,0.08); }
+    .email{ background:linear-gradient(90deg,#448aff,#2962ff); border:2px solid rgba(255,255,255,0.08); }
+    #choice-title{ font-weight:700; letter-spacing:0.3px; color:#fff; text-shadow:0 0 12px rgba(255,255,255,0.5); width:100%; text-align:center; margin-bottom:6px; }
+
+    @media(max-width:768px){
+      main{ margin-top:60px; padding:20px; }
+      .home-card{ width:95%; }
+      .desc{ font-size:0.95rem; }
+      .mail-btn, .method-btn{ padding:12px 20px; font-size:1rem; }
+    }
+
+    @keyframes fadeIn{ from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+    /* ================= end styles ================= */
+  </style>
+</head>
+
+<body>
+  <!-- Intro overlay (plays seed->soil->water->sun->wind->tree->login->speech then fades to page) -->
+  <div id="introOverlay" role="dialog" aria-modal="true" aria-label="Prithvi House Intro">
+    <div class="intro-scene" id="introScene">
+
+      <!-- sunbeam and flash -->
+      <div class="sunbeam" id="sunbeam" aria-hidden="true"></div>
+      <div class="sun-flash" aria-hidden="true"></div>
+
+      <!-- wind streaks -->
+      <div class="wind" aria-hidden="true"></div>
+      <div class="wind two" aria-hidden="true"></div>
+
+      <!-- seed dropped from top -->
+      <div class="seed" id="seed" aria-hidden="true" title="seed"></div>
+
+      <!-- soil with texture and pebbles -->
+      <div class="soil" aria-hidden="true">
+        <div class="ridge" aria-hidden="true">
+          <div class="texture"></div>
+        </div>
+        <div class="texture" aria-hidden="true"></div>
+        <div class="pebble" style="left:44%; bottom:18%;"></div>
+        <div class="pebble" style="left:56%; bottom:21%; width:8px; height:8px;"></div>
+        <div class="pebble" style="left:62%; bottom:14%; opacity:0.9;"></div>
+        <div class="spot"></div>
+      </div>
+
+      <!-- soil ripple -->
+      <div class="soil-ripple" aria-hidden="true"></div>
+
+      <!-- tree container -->
+      <div class="tree-wrap" id="treeWrap" aria-hidden="true">
+        <div class="tree-trunk" id="treeTrunk" aria-hidden="true">
+          <div class="bark"></div>
+        </div>
+
+        <div class="branch-left" aria-hidden="true"></div>
+        <div class="branch-right" aria-hidden="true"></div>
+
+        <div class="canopy" id="canopy" aria-hidden="true">
+          <div class="layer one"></div>
+          <div class="layer two"></div>
+          <div class="layer three"></div>
+          <div class="glint one"></div>
+          <div class="glint two"></div>
+        </div>
+      </div>
+
+      <!-- login panel (glass) -->
+      <div class="login-panel" id="loginPanel" aria-hidden="true">
+        <div class="login-title">Prithvi House</div>
+        <div class="login-sub">Enter your username to continue — rooted in values, rising towards excellence.</div>
+        <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-top:8px;">
+          <input id="usernameField" class="username-input" type="text" placeholder="Your username (any text allowed)" aria-label="username">
+          <button id="enterBtn" class="enter-btn" aria-label="Enter">Enter</button>
+        </div>
+      </div>
+
+      <!-- speech box -->
+      <div class="speech-box" id="speechBox" aria-hidden="true">
+        <span class="speech-text" id="speechText"></span><span class="typing-cursor" id="typingCursor"></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======= Your original site (unchanged content) ======= -->
+  <audio autoplay>
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9e1b98c8c0.mp3" type="audio/mp3">
+  </audio>
+
+  <div class="hamburger">☰</div>
+
+  <nav>
+    <ul>
+      <li><a href="#" data-section="home">🏠 Home</a></li>
+      <li><a href="#" data-section="students">🎯 Students Leading</a></li>
+      <li><a href="#" data-section="events">🏅 Upcoming Events/Sports</a></li>
+      <li><a href="#" data-section="info">ℹ️ About Prithvi House</a></li>
+      <li><a href="#" data-section="feedback">💬 Feedbacks</a></li>
+      <li><a href="#" data-section="media">📸 Photos / Media</a></li>
+      <li><a href="#" data-section="mail">✉️ report/feedback Mail</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- HOME -->
+    <section id="home" class="section active">
+      <div class="home-container">
+        <h1>Welcome to Prithvi House</h1>
+        <p class="tagline">"The Green Guardians of Empros International School"</p>
+        <p class="desc">Prithvi House represents growth, balance, and harmony with nature. We believe in teamwork, discipline, and innovation — shining bright in academics, sports, and culture alike.</p>
+
+        <div class="home-card">
+          <h2>About This Website</h2>
+          <p>This is the official platform for Prithvi House members at Empros International School, Talegaon Dabhade. Here you can explore our leading students, upcoming inter-house events, house updates, and even send us your valuable feedback.</p>
+        </div>
+
+        <div class="home-card">
+          <h2>Join Our Community</h2>
+          <a href="https://chat.whatsapp.com/KDaPoZXibz4CE5ouyIKdVR?mode=wwc" target="_blank" class="join-btn">Join WhatsApp Community</a>
+        </div>
+
+        <div class="home-footer"><p>“Together we grow, together we shine – We are Prithvi House.” 🌍</p></div>
+      </div>
+    </section>
+
+    <!-- STUDENTS -->
+    <section id="students" class="section">
+      <h2>Top Performing Students</h2>
+      <canvas id="studentChart"></canvas>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events" class="section">
+      <h2>Upcoming Events & Sports</h2>
+      <ul class="event-list">
+        <li>🏏 Inter-House Cricket Matches update soon</li>
+        <li>🏃‍♀️ Annual Sports Meet – update soon</li>
+        <li>⚽ Inter-House Football Finals – Date to be Announced</li>
+        <li>🏆 Tug of War Championship – Coming Soon!</li>
+      </ul>
+    </section>
+
+    <!-- INFO -->
+    <section id="info" class="section">
+      <h2>About Prithvi House</h2>
+      <div class="info-card">
+        <strong>Prefect:</strong> Princika<br>
+        <strong>Vice Prefect:</strong> Kartik<br>
+        <strong>House Teacher:</strong> Prajita Nair Ma’am
+      </div>
+      <p>🌍 Prithvi House symbolizes <strong>Earth</strong>, the mother of life and balance. It represents strength, patience, and steady growth. We believe in nurturing talents, respecting all beings, and striving for excellence while staying humble.</p>
+      <p>Our motto: <em>“Rooted in values, rising towards excellence.”</em></p>
+    </section>
+
+    <!-- FEEDBACK -->
+    <section id="feedback" class="section">
+      <h2>Feedbacks from Prithvi House Students</h2>
+      <ul class="feedback-list">
+        <li>Vedant – “I love being part of a team that believes in growth.”</li>
+        <li>Kunal – “Prithvi House gives me motivation and strength.”</li>
+        <li>Chinmay – “I enjoy every event and competition we have!”</li>
+        <li>Sejal – “The unity and energy in Prithvi House are unmatched.”li>
+        <li>Aditi – “We are not just a house, we are a family.”li>
+        <li>Tvisha – “Proud to represent the Earth and our team!”li>
+        <li>Vishal – “Prithvi House helps me stay balanced and focused.”li>
+        <li>Mit – “Every event is a new learning experience.”li>
+        <li>Gauri – “We believe in peace, hard work, and creativity.”li>
+        <li>Abhinav – “It’s always fun being part of Prithvi House.”li>
+        <li>Jivani – “Our team spirit makes us stronger.”li>
+        <li>Yuvraj – “Go Prithvi House! Always forward.”li>
+        <li>Shlok – “We rise by lifting others.”li>
+        <li>Sarth – “I feel proud to represent our house.”li>
+        <li>Arnav – “Every challenge makes us better.”li>
+        <li>Aditya – “Our motto keeps me inspired every day.”li>
+        <li>Swarali – “Prithvi House means teamwork and passion.”li>
+        <li>Jagrav – “We always give our best together.”li>
+        <li>Ishita – “Nature, balance, and positivity define us.”li>
+        <li>Vaidehi – “Our strength is our unity.”li>
+        <li>Kinjal – “Proud to be part of the green spirit!”li>
+        <li>Aarohi – “We grow like trees, strong and humble.”li>
+        <li>Ansh – “Prithvi House rocks every event!”li>
+      </ul>
+    </section>
+
+    <!-- MEDIA -->
+    <section id="media" class="section">
+      <h2>Photos & Media</h2>
+      <div class="home-card">
+        <p>🎥 Explore our moments, achievements, and videos on our official YouTube Channel.</p>
+        <a href="https://www.youtube.com/@EISPrithvihouse" target="_blank" class="join-btn">Visit Our YouTube Channel</a>
+      </div>
+      <div class="media-gallery">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=UU" title="Prithvi House Channel" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- MAIL -->
+    <section id="mail" class="section">
+      <h2>Send a Message to Prithvi House Team</h2>
+
+      <div id="mail-options" class="mail-choice">
+        <button class="mail-btn report"><span style="font-size:1.05rem">🚨</span> <span style="text-decoration:underline; text-transform:uppercase;">Report</span></button>
+        <button class="mail-btn feedback"><span style="font-size:1.05rem">💚</span> <span style="text-decoration:underline; text-transform:uppercase;">Feedback</span></button>
+      </div>
+
+      <div id="method-options" class="method-choice" style="display:none;">
+        <div id="choice-title"> </div>
+        <button class="method-btn whatsapp"><span style="font-weight:800">💬</span> <span style="font-weight:700">Send on WhatsApp</span><br><small style="opacity:0.9">Direct to +91 8080462808</small></button>
+        <button class="method-btn email"><span style="font-weight:800">✉️</span> <span style="font-weight:700">Send via Email</span><br><small style="opacity:0.9">Securely via EmailJS</small></button>
+      </div>
+
+      <form id="contact-form" style="display:none;">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" rows="4" placeholder="Your Message..." required></textarea>
+        <button type="submit">Send Mail</button>
+      </form>
+      <p id="mail-status"></p>
+    </section>
+  </main>
+
+  <!-- ================= INTRO JS (handles animation sequence + login + speech) ================= -->
+  <script>
+    (function(){
+      const intro = document.getElementById('introOverlay');
+      const seed = document.getElementById('seed');
+      const soilRipple = document.querySelector('.soil-ripple');
+      const treeWrap = document.getElementById('treeWrap');
+      const trunk = document.getElementById('treeTrunk');
+      const canopy = document.getElementById('canopy');
+      const loginPanel = document.getElementById('loginPanel');
+      const speechBox = document.getElementById('speechBox');
+      const speechText = document.getElementById('speechText');
+      const typingCursor = document.getElementById('typingCursor');
+      const enterBtn = document.getElementById('enterBtn');
+      const usernameField = document.getElementById('usernameField');
+      const introScene = document.getElementById('introScene');
+
+      // spawn small number of water drops
+      function spawnWaterDropsFew(){
+        const coords = [46, 52, 58];
+        coords.forEach((c,i)=>{
+          const d = document.createElement('div');
+          d.className = 'water-drop';
+          d.style.left = c + '%';
+          d.style.top = '-12vh';
+          d.style.animationDelay = `${520 + i*80}ms`;
+          d.style.zIndex = 41;
+          intro.appendChild(d);
+          setTimeout(()=> d.remove(), 1400);
+        });
+      }
+
+      // short soft rain effect
+      function spawnRainShort(){
+        for(let i=0;i<14;i++){
+          const d = document.createElement('div');
+          d.className = 'water-drop rain';
+          const left = 18 + Math.random()*64;
+          d.style.left = left + '%';
+          d.style.top = - (10 + Math.random()*6) + 'vh';
+          d.style.animationDelay = `${980 + Math.random()*360}ms`;
+          d.style.opacity = 0.85;
+          intro.appendChild(d);
+          setTimeout(()=> d.remove(), 1400 + Math.random()*700);
+        }
+      }
+
+      // soil dust burst
+      function spawnSoilDust(){
+        for(let i=0;i<18;i++){
+          const p = document.createElement('div');
+          p.style.position='absolute';
+          p.style.width = (4 + Math.random()*8) + 'px';
+          p.style.height = p.style.width;
+          p.style.background = 'rgba(0,0,0,0.36)';
+          p.style.left = (48 + Math.random()*6) + '%';
+          p.style.bottom = (16 + Math.random()*2) + 'vh';
+          p.style.borderRadius='50%';
+          p.style.opacity = 0;
+          p.style.transform = `translateY(6px)`;
+          p.style.zIndex=12;
+          p.style.transition = `transform 420ms ease, opacity 420ms ease`;
+          intro.appendChild(p);
+          setTimeout(()=>{ p.style.opacity=1; p.style.transform = `translateY(-18px) translateX(${(Math.random()*28-8)}px) scale(${0.6+Math.random()*0.9})`; p.style.opacity=0.92; }, 880 + Math.random()*80);
+          setTimeout(()=> p.remove(), 1700);
+        }
+      }
+
+      // leaf particles fall
+      function spawnLeafParticles(){
+        for(let i=0;i<18;i++){
+          const leaf = document.createElement('div');
+          leaf.className = 'leaf-particle';
+          const size = 8 + Math.random()*22;
+          leaf.style.width = size + 'px';
+          leaf.style.height = Math.round(size*0.6) + 'px';
+          leaf.style.left = (48 + Math.random()*16) + '%';
+          leaf.style.top = (20 + Math.random()*8) + 'vh';
+          leaf.style.opacity = 0.98;
+          leaf.style.transform = `rotate(${Math.random()*360}deg)`;
+          leaf.style.zIndex = 44;
+          intro.appendChild(leaf);
+          setTimeout(()=> {
+            leaf.style.top = (78 + Math.random()*12) + 'vh';
+            leaf.style.left = (18 + Math.random()*60) + '%';
+            leaf.style.transform = `rotate(${(Math.random()*720)}deg) translateX(${(Math.random()*80-40)}px)`;
+            leaf.style.opacity = 0.92;
+          }, 2480 + Math.random()*160);
+          setTimeout(()=> leaf.remove(), 3000 + Math.random()*2000);
+        }
+      }
+
+      // root sprouts
+      function spawnRootSprouts(){
+        for(let i=0;i<10;i++){
+          const r = document.createElement('div');
+          r.style.position='absolute';
+          r.style.left = (49 + Math.random()*4) + '%';
+          r.style.bottom = (20 + Math.random()*2) + 'vh';
+          r.style.width = '2px';
+          r.style.height = (10 + Math.random()*18)+'px';
+          r.style.background = 'linear-gradient(180deg,#84543a,#6a3f2a)';
+          r.style.transform = `rotate(${(Math.random()*40-12)}deg) translateY(6px)`;
+          r.style.opacity = 0;
+          r.style.zIndex = 14;
+          r.style.transition = 'all 520ms ease';
+          intro.appendChild(r);
+          setTimeout(()=>{ r.style.opacity=1; r.style.transform = `rotate(${(Math.random()*10-6)}deg) translateY(-8px)`; }, 1100 + Math.random()*120);
+          setTimeout(()=> r.remove(), 2000 + Math.random()*1200);
+        }
+      }
+
+      // sequence timing tuned to CSS delays
+      setTimeout(()=> spawnWaterDropsFew(), 760);
+      setTimeout(()=> { spawnSoilDust(); spawnRootSprouts(); }, 880);
+      setTimeout(()=> spawnRainShort(), 1060);
+      setTimeout(()=> introScene.classList.add('sway'), 1780);
+      setTimeout(()=> spawnLeafParticles(), 2480);
+
+      // extra pebble shift on impact
+      setTimeout(()=> {
+        const p = document.createElement('div');
+        p.className = 'pebble';
+        p.style.left = '50%';
+        p.style.bottom = '18%';
+        p.style.width = '10px';
+        p.style.height = '10px';
+        p.style.opacity = '0.0';
+        intro.appendChild(p);
+        setTimeout(()=> { p.style.opacity='0.95'; p.style.transform='translateY(-6px)'; }, 880);
+        setTimeout(()=> p.remove(), 2100);
+      }, 920);
+
+      // focus username after animations
+      setTimeout(()=> {
+        const f = document.getElementById('usernameField');
+        if(f) f.focus();
+      }, 3300);
+
+      // welcome speech (long, attractive)
+      const welcomeSpeech = `Welcome, {name}!  🌿
+Welcome to Prithvi House — where growth, unity and nature inspire every student to rise together. Here we nurture character, champion teamwork, and celebrate every small victory that leads to greatness. Remain rooted in values, reach for excellence, and let your green spirit shine across every field, stage, and classroom.`;
+
+      function typeSpeech(name, doneCallback){
+        speechText.textContent = "";
+        let full = welcomeSpeech.replace('{name}', name || 'Friend');
+        speechBox.classList.add('visible');
+        speechBox.setAttribute('aria-hidden','false');
+        typingCursor.style.display = 'inline-block';
+        let i=0;
+        const speed = 26;
+        function step(){
+          if(i < full.length){
+            speechText.textContent += full.charAt(i);
+            i++;
+            let delay = speed;
+            const ch = full.charAt(i-1);
+            if(ch === ',' || ch === '—' || ch === '!' || ch === '.') delay += 90;
+            if(ch === '\n') delay += 180;
+            setTimeout(step, delay);
+          } else {
+            setTimeout(()=>{
+              typingCursor.style.display = 'none';
+              if(typeof doneCallback === 'function') doneCallback();
+            }, 720);
+          }
+        }
+        step();
+      }
+
+      function onEnter(){
+        const username = usernameField.value.trim() || 'Friend';
+        usernameField.disabled = true;
+        enterBtn.disabled = true;
+        setTimeout(()=> {
+          typeSpeech(username, ()=> {
+            setTimeout(()=> {
+              intro.classList.add('overlay-hidden');
+              setTimeout(()=> {
+                try { intro.remove(); } catch(e){}
+                document.querySelector('.hamburger')?.focus?.();
+              }, 980);
+            }, 780);
+          });
+        }, 180);
+      }
+
+      enterBtn.addEventListener('click', onEnter);
+      usernameField.addEventListener('keydown', function(e){
+        if(e.key === 'Enter') onEnter();
+      });
+
+      // Escape to skip
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+          intro.classList.add('overlay-hidden');
+          setTimeout(()=> { try { intro.remove(); } catch(e){} }, 420);
+        }
+      });
+
+    })();
+  </script>
+
+  <!-- ================= Original site JS (unchanged behavior) ================= -->
+  <script>
+    // MENU TOGGLE
+    const hamburger = document.querySelector(".hamburger");
+    const nav = document.querySelector("nav");
+    const links = document.querySelectorAll("nav a");
+    const sections = document.querySelectorAll(".section");
+
+    hamburger.addEventListener("click", ()=>{
+      nav.classList.toggle("show");
+    });
+
+    links.forEach(link=>{
+      link.addEventListener("click", e=>{
+        e.preventDefault();
+        const id = link.getAttribute("data-section");
+        if(!id) return;
+        sections.forEach(s=>s.classList.remove("active"));
+        const target = document.getElementById(id);
+        if(target) target.classList.add("active");
+        nav.classList.remove("show");
+      });
+    });
+
+    // STUDENT CHART (Chart.js)
+    try {
+      const ctx = document.getElementById("studentChart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Vedant","Kunal","Chinmay","Sejal","Aditi","Tvisha","Vishal","Mit","Gauri","Abhinav","Jivani","Yuvraj","Shlok","Sarth","Arnav","Aditya","Swarali","Jagrav","Ishita","Vaidehi","Kinjal","Aarohi","Ansh"],
+          datasets: [{
+            label:"Performance Score",
+            data:[90,88,86,92,85,91,84,80,83,89,87,82,90,88,85,91,89,86,90,87,84,83,88],
+            backgroundColor:["#ff4081","#7c4dff","#00e5ff","#ffeb3b","#ff5722","#4caf50","#03a9f4","#e91e63","#009688","#8bc34a","#ffc107","#9c27b0","#00bcd4","#f44336","#2196f3","#673ab7","#ff9800","#cddc39","#4db6ac","#3f51b5","#0097a7","#b388ff","#26c6da"]
+          }]
+        },
+        options:{ responsive:true, scales:{ y:{ beginAtZero:true, max:100 } } }
+      });
+    } catch (err) {
+      console.warn("ChartJS init failed:", err);
+    }
+
+    // MAIL LOGIC (NEW)
+    const mailOptions = document.getElementById('mail-options');
+    const methodOptions = document.getElementById('method-options');
+    const contactForm = document.getElementById('contact-form');
+    const choiceTitle = document.getElementById('choice-title');
+    const mailStatus = document.getElementById('mail-status');
+
+    let selectedType = "";
+
+    // Step 1: select Report or Feedback
+    const reportBtn = document.querySelector('.report');
+    const feedbackBtn = document.querySelector('.feedback');
+
+    if (reportBtn) {
+      reportBtn.addEventListener('click', () => {
+        selectedType = "Report";
+        choiceTitle.innerHTML = `<strong style="font-size:1.05rem">You selected</strong>
+          <div style="font-size:1.25rem; margin-top:6px; font-weight:900; color:#ffdedb; text-shadow:0 0 12px rgba(255,100,100,0.6);">REPORT</div>`;
+        mailOptions.style.display = "none";
+        methodOptions.style.display = "flex";
+      });
+    }
+
+    if (feedbackBtn) {
+      feedbackBtn.addEventListener('click', () => {
+        selectedType = "Feedback";
+        choiceTitle.innerHTML = `<strong style="font-size:1.05rem">You selected</strong>
+          <div style="font-size:1.25rem; margin-top:6px; font-weight:900; color:#d9ffea; text-shadow:0 0 12px rgba(80,255,150,0.5);">FEEDBACK</div>`;
+        mailOptions.style.display = "none";
+        methodOptions.style.display = "flex";
+      });
+    }
+
+    // Step 2: WhatsApp -> open chat to specific number
+    const waBtn = document.querySelector('.whatsapp');
+    if (waBtn) {
+      waBtn.addEventListener('click', () => {
+        const template = `*${selectedType} to Prithvi House*%0A%0AHello Team,%0A%0A[Write your message here]%0A%0AFrom: `;
+        const waUrl = `https://wa.me/918080462808?text=${encodeURIComponent(template)}`;
+        window.open(waUrl, '_blank');
+      });
+    }
+
+    // Step 2: Email -> show the email form (uses EmailJS)
+    const emailBtn = document.querySelector('.email');
+    if (emailBtn) {
+      emailBtn.addEventListener('click', () => {
+        methodOptions.style.display = "none";
+        contactForm.style.display = "flex";
+        document.getElementById('message').value = `[${selectedType}] `;
+        document.getElementById('name').focus();
+      });
+    }
+
+    // Step 3: send via EmailJS (keeps your service & template)
+    contactForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        mailStatus.innerText = "Please complete all fields.";
+        return;
+      }
+
+      mailStatus.innerText = "Sending...";
+
+      // send using EmailJS
+      emailjs.send("service_2lklg8e", "template_6cmr2gw", {
+        from_name: name,
+        from_email: email,
+        message: `[${selectedType}] ${message}`
+      }).then(() => {
+        mailStatus.innerText = "✅ Mail Sent Successfully!";
+        contactForm.reset();
+        contactForm.style.display = "none";
+        methodOptions.style.display = "none";
+        setTimeout(()=>{ mailStatus.innerText=""; mailOptions.style.display="flex"; }, 1800);
+      }, (error) => {
+        console.error("EmailJS error:", error);
+        mailStatus.innerText = "❌ Error sending mail! Please try again later.";
+      });
+    });
+  </script>
+</body>
+</html>
